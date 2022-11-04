@@ -2,10 +2,12 @@ package application.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class LoginController implements Navigation {
 
 	@FXML PasswordField passwordField;
+	@FXML TextField usernameField;
 
 	@FXML
 	public void goToSignUp() {
@@ -16,9 +18,10 @@ public class LoginController implements Navigation {
 		goToPage("view/ResetPassword.fxml");
 	}
 
+	
 	@FXML public void loginPressed() {
 		PasswordHandler ph = new PasswordHandler();
-		if (ph.verificationStatus(passwordField)) {
+		if (ph.verificationStatus(passwordField, usernameField.getText())) {
 			commonOb.setCurrentUser(ph.getUser());
 			goToPage("view/Courses.fxml");
 		}

@@ -14,29 +14,29 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SignUpController">
    <children>
-      <TextField layoutX="359.0" layoutY="260.0" prefHeight="48.0" prefWidth="336.0" promptText="Username" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+      <TextField fx:id="usernameField" layoutX="433.0" layoutY="236.0" prefHeight="48.0" prefWidth="336.0" promptText="Username" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Hyperlink layoutX="359.0" layoutY="608.0" onAction="#goToLogin" text="Already had an account? Go to Login" />
-      <Button layoutX="359.0" layoutY="543.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="336.0" style="-fx-background-color: royalblue;" text="Continue" textFill="WHITE">
+      <Hyperlink layoutX="435.0" layoutY="588.0" onAction="#goToLogin" text="Already had an account? Go to Login" />
+      <Button layoutX="433.0" layoutY="528.0" mnemonicParsing="false" onAction="#signUpButtonPressed" prefHeight="48.0" prefWidth="336.0" style="-fx-background-color: royalblue;" text="Continue" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="359.0" layoutY="232.0" text="Username" />
-      <Label layoutX="361.0" layoutY="330.0" text="Password" />
+      <Label layoutX="433.0" layoutY="208.0" text="Username" />
+      <Label layoutX="435.0" layoutY="306.0" text="Password" />
       <Label layoutX="527.0" layoutY="105.0" text="Sign Up">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <PasswordField layoutX="359.0" layoutY="358.0" prefHeight="48.0" prefWidth="336.0" promptText="Password" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+      <PasswordField fx:id="passwordField" layoutX="433.0" layoutY="334.0" prefHeight="48.0" prefWidth="336.0" promptText="Password" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
          <padding>
             <Insets left="5.0" right="125.0" />
          </padding>
       </PasswordField>
-      <MenuButton fx:id="securityQuestionSelect" layoutX="359.0" layoutY="423.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="336.0" text="Select Security Question">
+      <MenuButton fx:id="securityQuestionSelect" layoutX="433.0" layoutY="408.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="336.0" text="Select Security Question">
         <items>
           <MenuItem mnemonicParsing="false" text="What's the name of your first pet?" />
           <MenuItem mnemonicParsing="false" text="..." />
@@ -48,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </MenuButton>
-      <TextField layoutX="359.0" layoutY="477.0" prefHeight="48.0" prefWidth="336.0" promptText="Answer" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+      <TextField fx:id="securityAnswerField" layoutX="432.0" layoutY="462.0" prefHeight="48.0" prefWidth="336.0" promptText="Answer" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

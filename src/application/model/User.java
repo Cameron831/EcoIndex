@@ -19,6 +19,13 @@ public class User {
 		for (String i : convertCourse.split(","))
 			this.courses.add(new Course(i));
 	}
+	
+	User(String un, String pw, String sq, String sqA) {
+		this.username = un;
+		this.password = pw;
+		this.securityQuestion = sq;
+		this.securityQuestionAnswer = sqA;
+	}
 
 	public String getUsername() {
 		return username;

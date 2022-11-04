@@ -1,0 +1,13 @@
+/CommonObjs.class
+/Course.class
+/CoursesController.class
+/LoginController.class
+/Navigation.class
+/PasswordHandler.class
+/ResetPasswordController.class
+/SignUpController.class
+/WelcomeController.class
+/Clonable.class
+/CloneCourseInfo.class
+/CourseInfoController.class
+/SignUpHandler.class

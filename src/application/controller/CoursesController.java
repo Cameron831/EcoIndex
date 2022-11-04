@@ -28,4 +28,9 @@ public class CoursesController implements Navigation {
 
 	}
 
+	@FXML public void logOutPressed() {
+		commonOb.setCurrentUser(null);
+		goToPage("view/Welcome.fxml");
+	}
+
 }

@@ -12,7 +12,6 @@ public class PasswordHandler {
 	}
 	
 	private String decrypt() {
-		user = checkDatabase.getUser();
 		
 		// encryption/decryption later
 		return user.getPassword();
@@ -22,13 +21,15 @@ public class PasswordHandler {
 		return user;
 	}
 	
-	private boolean verification(PasswordField pw) {
+	private boolean verification(PasswordField pw, String un) {
 		// TODO
+		user = checkDatabase.getUser(un);
+		
 		String attemptPW = pw.getText();
 		return decrypt().equals(attemptPW);
 	}
 	
-	public boolean verificationStatus(PasswordField pw) {
-		return verification(pw);
+	public boolean verificationStatus(PasswordField pw, String un) {
+		return verification(pw, un);
 	}
 }

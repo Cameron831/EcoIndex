@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TilePane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefRows="1" prefTileHeight="87.0" prefTileWidth="200.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CourseInfoController">
+   <children>
+      <Label fx:id="courseName" ellipsisString="" prefHeight="44.0" prefWidth="99.0" text="akjfbsdjkfb" wrapText="true">
+         <TilePane.margin>
+            <Insets left="20.0" />
+         </TilePane.margin>
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" prefHeight="82.0" prefWidth="90.0">
+         <children>
+            <Label fx:id="cardTotal">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Label text="Index Cards" />
+         </children>
+         <TilePane.margin>
+            <Insets bottom="5.0" />
+         </TilePane.margin>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label fx:id="cardTotalLearned">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Label text="Learned" />
+         </children>
+         <TilePane.margin>
+            <Insets bottom="5.0" right="20.0" />
+         </TilePane.margin>
+      </VBox>
+      <Button mnemonicParsing="false" onAction="#viewCoursePressed" prefHeight="46.0" prefWidth="157.0" text="View Course">
+         <TilePane.margin>
+            <Insets right="10.0" />
+         </TilePane.margin>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#editCoursePressed" prefHeight="46.0" prefWidth="157.0" text="Edit Course">
+         <TilePane.margin>
+            <Insets left="30.0" />
+         </TilePane.margin>
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+   </children>
+   <padding>
+      <Insets left="-20.0" />
+   </padding>
+</TilePane>

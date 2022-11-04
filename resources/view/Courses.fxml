@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -55,5 +56,6 @@
             </BorderPane>
          </content>
       </ScrollPane>
+      <Hyperlink layoutX="1059.0" layoutY="89.0" onAction="#logOutPressed" text="Log out" />
    </children>
 </AnchorPane>
