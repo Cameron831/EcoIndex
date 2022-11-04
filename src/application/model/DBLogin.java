@@ -38,7 +38,7 @@ public class DBLogin implements DBHandler {
 	private User compactToUser() {
 		String readInfo = readDB();
 		String info[] = readInfo.split("//");
-		return new User(info[0],info[1],info[2],info[3]);
+		return new User(info[0],info[1],info[2],info[3],info[4]);
 	}
 	
 	public User getUser() {

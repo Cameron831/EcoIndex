@@ -48,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </MenuButton>
-      <TextField layoutX="359.0" layoutY="477.0" prefHeight="48.0" prefWidth="336.0" promptText="Username" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+      <TextField layoutX="359.0" layoutY="477.0" prefHeight="48.0" prefWidth="336.0" promptText="Answer" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

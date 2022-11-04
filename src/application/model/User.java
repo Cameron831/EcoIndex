@@ -1,18 +1,23 @@
 package application.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import application.controller.Course;
 
 public class User {
 	private String username, password, securityQuestion, securityQuestionAnswer;
-	private List<Course> courses;
+	private List<Course> courses = new ArrayList<>();
 
-	User(String un, String pw, String sq, String sqA) {
+	User(String un, String pw, String sq, String sqA, String convertCourse) {
 		this.username = un;
 		this.password = pw;
 		this.securityQuestion = sq;
 		this.securityQuestionAnswer = sqA;
+		
+		
+		for (String i : convertCourse.split(","))
+			this.courses.add(new Course(i));
 	}
 
 	public String getUsername() {
