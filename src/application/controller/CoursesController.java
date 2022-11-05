@@ -37,7 +37,7 @@ public class CoursesController implements Navigation {
 
 	void createCourse(String name) {
 		cloner.cloneCourse(midlayer.getCourseDisplayPane(), midlayer.getScrollDisplayPane(),
-				currentUser.addCourse(name));
+				(currentUser == null) ? new Course(name) : currentUser.addCourse(name));
 	}
 
 	@FXML
