@@ -30,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor></CheckBox>
       <Label layoutX="686.0" layoutY="249.0" text="Username" />
-      <Label layoutX="685.0" layoutY="347.0" text="Password (just type b for now)" />
+      <Label layoutX="685.0" layoutY="347.0" text="Password" />
       <Separator layoutX="551.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="98.0" scaleX="2.0" />
       <Label alignment="CENTER" prefHeight="752.0" prefWidth="597.0" text="EcoIndex (INSERT LOGO)" textAlignment="CENTER" wrapText="true">
          <font>

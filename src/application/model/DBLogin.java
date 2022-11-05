@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import application.controller.Course;
+
 public class DBLogin implements DBHandler {
 	// singleton essentials
 	private static DBLogin singleInstance = new DBLogin();
@@ -46,19 +48,22 @@ public class DBLogin implements DBHandler {
 	public User getUser(String un) {
 		return compactToUser(un);
 	}
-	
-	
-	
+
 	public User createNewUser(String un, String pw, String sq, String sqA) {
-		
+
 		User create = new User(un, pw, sq, sqA);
-		String form = un + "//" + pw + "//" + sq + "//" + sqA + "//";
-		writeToDB(form);
+		writeNewUser(format(create));
 		return create;
 	}
 	
-	
-	private void writeToDB(String toWrite) {
+	private String format(User u) {
+		String ret = u.getUsername() + "//" + u.getPassword() + "//" + u.getSecurityQuestion() + "//" + u.getSecurityQuestionAnswer() + "";
+		for (Course c : u.getCourses())
+			ret += (c.getName() + ",");
+		return ret;
+	}
+
+	private void writeNewUser(String toWrite) {
 		try {
 			FileWriter fw = new FileWriter(database, true);
 			fw.write(String.format("%n") + toWrite);
@@ -66,19 +71,7 @@ public class DBLogin implements DBHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

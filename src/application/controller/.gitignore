@@ -11,3 +11,9 @@
 /CloneCourseInfo.class
 /CourseInfoController.class
 /SignUpHandler.class
+/AddPromptController.class
+/CoursesController$AddPromptController.class
+/CoursesController$AddCoursePromptController.class
+/AddCoursePromptController.class
+/CourseConnector.class
+/CourseCommonObjs.class

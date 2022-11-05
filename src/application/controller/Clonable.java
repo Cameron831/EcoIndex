@@ -10,7 +10,7 @@ public interface Clonable {
 		try {
 			Pane pane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource(template));
 			destination.getChildren().add(pane);
-			
+
 			// can maybe be optimized with flag, but do that later
 			if (sizeAdjustment.getMaxHeight() > sizeAdjustment.getHeight())
 				sizeAdjustment.setPrefHeight(sizeAdjustment.getPrefHeight() + pane.getPrefHeight());
