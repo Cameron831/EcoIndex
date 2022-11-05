@@ -48,4 +48,15 @@ public class CommonObjs {
 	}
 	
 	
+	private User tempUser_ResetPassword;
+	User getTempUser() {
+		return tempUser_ResetPassword;
+	}
+	void setTempUser(User user) {
+		this.tempUser_ResetPassword = user;
+	}
+	
+	
+	
+	
 }

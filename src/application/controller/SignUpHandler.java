@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 public class SignUpHandler {
 
 	private DBLogin checkDatabase = DBLogin.getSingle();
-	private PasswordHandler ph = new PasswordHandler();
+	private AccountHandler ph = new AccountHandler();
 
 	User newUser(String un, PasswordField pw, String sq, TextField sqA) {
 		String testPW = pw.getText();

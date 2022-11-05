@@ -8,6 +8,7 @@ public class LoginController implements Navigation {
 
 	@FXML PasswordField passwordField;
 	@FXML TextField usernameField;
+	private AccountHandler ah = new AccountHandler();
 
 	@FXML
 	public void goToSignUp() {
@@ -15,14 +16,19 @@ public class LoginController implements Navigation {
 	}
 
 	@FXML public void goToResetPassword() {
+		String ret = usernameField.getText();
+		if (ret.isEmpty()) {
+			System.out.println("enter a username");
+			return;
+		}
+		commonOb.setTempUser(ah.getUser(ret));
 		goToPage("view/ResetPassword.fxml");
 	}
 
 	
 	@FXML public void loginPressed() {
-		PasswordHandler ph = new PasswordHandler();
-		if (ph.verificationStatus(passwordField, usernameField.getText())) {
-			commonOb.setCurrentUser(ph.getUser());
+		if (ah.verificationStatus(passwordField, usernameField.getText())) {
+			commonOb.setCurrentUser(ah.getUser());
 			goToPage("view/Courses.fxml");
 		}
 		else

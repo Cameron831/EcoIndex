@@ -68,12 +68,19 @@ public class User {
 
 	public Course addCourse(Course c) {
 		courses.add(c);
+		updateDB();
 		return c;
 	}
 
 	public Course addCourse(String c) {
 		Course i = new Course(c);
 		courses.add(i);
+		updateDB();
 		return i;
+	}
+	
+	private void updateDB() {
+		DBLogin db = DBLogin.getSingle();
+		db.overwriteDB(this);
 	}
 }
