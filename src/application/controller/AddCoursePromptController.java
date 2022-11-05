@@ -19,7 +19,11 @@ public class AddCoursePromptController implements Navigation {
 	@FXML
 	public void confirmButtonPressed() {
 		midlayer.setCourseName(nameField.getText());
-		remove(midlayer.getTopPane(), promptPane);
+		exitPrompt();
 		midlayer.passSignal();
+	}
+
+	@FXML public void exitPrompt() {
+		remove(midlayer.getTopPane(), promptPane);
 	}
 }

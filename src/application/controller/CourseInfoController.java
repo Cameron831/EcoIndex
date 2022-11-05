@@ -26,11 +26,12 @@ public class CourseInfoController implements CloneCourseInfo {
 
 	@FXML
 	public void viewCoursePressed() {
-		System.out.println("nope");
+		System.out.println("view not implemented yet");
 	}
 
 	@FXML
 	public void editCoursePressed() {
 		// TODO delete and rename
+		System.out.println(courseName.getText());
 	}
 }
