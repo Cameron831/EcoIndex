@@ -26,12 +26,14 @@ public interface Navigation {
 	}
 	
 	// show popup
-	default void popup(String url, Pane overlay) {
+	default Pane popup(String url, Pane overlay) {
 		try {
 			Pane pane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource(url));
 			overlay.getChildren().add(pane);
+			return pane;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 	

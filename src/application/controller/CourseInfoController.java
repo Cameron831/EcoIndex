@@ -36,12 +36,17 @@ public class CourseInfoController implements CloneCourseInfo, Navigation {
 	}
 
 	// show popup to edit course
-	// todo: need to retrieve and update
 	@FXML
 	public void editCoursePressed() {
-		popup("view/EditCoursePrompt.fxml", commonOb.getTopCoursePane());
+		if (commonOb.getCurrentUser() != null) {
+			commonOb.setTemporaryCourse(commonOb.getCurrentUser().searchCourse(courseName.getText()));
+			popup("view/EditCoursePrompt.fxml", commonOb.getTopCoursePane());
+		}
+		else {
+			System.out.println("please login");
+		}
 	}
-	
+
 	// remove the course in the view and update database
 	@FXML
 	public void deleteCoursePressed() {

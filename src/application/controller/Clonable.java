@@ -13,6 +13,7 @@ public interface Clonable {
 			destination.getChildren().add(pane);
 
 			// dynamic resizing the parent container when clone
+			// only increases size is if it smaller than max height
 			if (sizeAdjustment.getMaxHeight() > sizeAdjustment.getHeight())
 				sizeAdjustment.setPrefHeight(sizeAdjustment.getPrefHeight() + pane.getPrefHeight());
 		} catch (IOException e) {
@@ -21,7 +22,7 @@ public interface Clonable {
 	}
 	
 	default void removeClone(Pane container, Pane toRemove, Region sizeAdjustment) {
-		sizeAdjustment.setPrefHeight(sizeAdjustment.getPrefHeight() - toRemove.getPrefHeight());
 		container.getChildren().remove(toRemove);
+		sizeAdjustment.setPrefHeight(sizeAdjustment.getPrefHeight() - toRemove.getPrefHeight());
 	}
 }

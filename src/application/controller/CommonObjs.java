@@ -74,4 +74,16 @@ public class CommonObjs {
 	void setScrollDisplayCoursePane(ScrollPane p) {
 		this.scrollDisplayCoursePane = p;
 	}
+	
+	
+	// share course for editing
+	private Course temporaryCourse;
+
+	public Course getTemporaryCourse() {
+		return temporaryCourse;
+	}
+
+	void setTemporaryCourse(Course temporaryCourseName) {
+		this.temporaryCourse = temporaryCourseName;
+	}
 }

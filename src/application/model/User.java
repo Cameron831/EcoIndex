@@ -71,6 +71,13 @@ public class User {
 		courses.remove(counter);
 		updateDB();
 	}
+	
+	public Course searchCourse(String courseName) {
+		for (Course c : courses)
+			if (courseName.equals(c.getName()))
+				return c;
+		return null;
+	}
 
 	void setCourses(List<Course> courses) {
 		this.courses = courses;
@@ -89,8 +96,8 @@ public class User {
 		return addCourse(i);
 	}
 
-	// private helper method to update the database
-	private void updateDB() {
+	// update the database
+	public void updateDB() {
 		TextDB_Handler db = TextDB_Handler.getSingle();
 		db.overwriteDB(this);
 	}
