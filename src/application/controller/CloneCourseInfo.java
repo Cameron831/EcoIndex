@@ -10,8 +10,4 @@ public interface CloneCourseInfo extends Clonable {
 		comm.setCurrentCourse(c);
 		cloning("view/CourseInfoTemplate.fxml", courseDisplay, sizeAdjustment);
 	}
-//	
-//	default void removeClone(Pane container, Pane toRemove, Region sizeAdjustment) {
-//		super.removeClone(container, toRemove, sizeAdjustment);
-//	}
 }
