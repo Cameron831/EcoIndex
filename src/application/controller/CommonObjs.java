@@ -1,6 +1,7 @@
 package application.controller;
 
 import application.model.User;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -26,7 +27,6 @@ public class CommonObjs {
 	
 	
 	// share the current user
-//	private User currentUser = new User("Guest","","","");
 	private User currentUser = null;
 	public User getCurrentUser() {
 		return currentUser;
@@ -36,18 +36,7 @@ public class CommonObjs {
 	}
 	
 	
-	// share top level course pane
-	private Pane coursePane;
-
-	public Pane getCoursePane() {
-		return coursePane;
-	}
-
-	public void setCoursePane(Pane coursePane) {
-		this.coursePane = coursePane;
-	}
-	
-	
+	// temporarily communicate the user to fetch security question
 	private User tempUser_ResetPassword;
 	User getTempUser() {
 		return tempUser_ResetPassword;
@@ -57,6 +46,32 @@ public class CommonObjs {
 	}
 	
 	
+	// share pane for popups
+	private Pane topCoursePane;
+	Pane getTopCoursePane() {
+		return topCoursePane;
+	}
+	void setTopCoursePane(Pane topPane) {
+		this.topCoursePane = topPane;
+	}
+
+	
+	// share vbox pane for showing courses
+	private Pane courseDisplay;
+	Pane getCourseDisplayPane() {
+		return courseDisplay;
+	}
+	void setCourseDisplayPane(Pane p) {
+		this.courseDisplay = p;
+	}
 	
 	
+	// share container for courses vbox pane
+	private ScrollPane scrollDisplayCoursePane;
+	ScrollPane getScrollDisplayCoursePane() {
+		return scrollDisplayCoursePane;
+	}
+	void setScrollDisplayCoursePane(ScrollPane p) {
+		this.scrollDisplayCoursePane = p;
+	}
 }

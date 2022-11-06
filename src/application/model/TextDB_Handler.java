@@ -9,19 +9,20 @@ import java.util.Scanner;
 
 import application.controller.Course;
 
-public class DBLogin implements DBHandler {
+public class TextDB_Handler implements DBHandler {
 	// singleton essentials
-	private static DBLogin singleInstance = new DBLogin();
+	private static TextDB_Handler singleInstance = new TextDB_Handler();
 
-	private DBLogin() {
+	private TextDB_Handler() {
 	};
 
-	public static DBLogin getSingle() {
+	public static TextDB_Handler getSingle() {
 		return singleInstance;
 	}
 
 	private File database = new File("UserDB.txt");
 
+	// fetch info from database based on username
 	private String searchUsername(String un) {
 		try {
 			Scanner reader = new Scanner(database);
@@ -41,6 +42,7 @@ public class DBLogin implements DBHandler {
 		}
 	}
 
+	// compact database info to a User
 	private User compactToUser(String un) {
 		String readInfo = searchUsername(un);
 		String[] info = readInfo.split("//");
@@ -55,6 +57,8 @@ public class DBLogin implements DBHandler {
 		return compactToUser(un);
 	}
 
+	// public append new user and info
+	// todo: may change parameters to be more flexible
 	public User createNewUser(String un, String pw, String sq, String sqA) {
 		User create = new User(un, pw, sq, sqA);
 		writeNewUser(convert(create));
@@ -66,6 +70,7 @@ public class DBLogin implements DBHandler {
 		overwriteDB(u);
 	}
 
+	// convert User info to database format
 	private String convert(User u) {
 		String ret = u.getUsername() + "//" + u.getPassword() + "//" + u.getSecurityQuestion() + "//"
 				+ u.getSecurityQuestionAnswer() + "//";
@@ -74,6 +79,7 @@ public class DBLogin implements DBHandler {
 		return ret;
 	}
 
+	// append info string to database
 	private void writeNewUser(String toWrite) {
 		try {
 			FileWriter fw = new FileWriter(database, true);
@@ -88,6 +94,7 @@ public class DBLogin implements DBHandler {
 		overwrite(u);
 	}
 
+	// update user u information
 	private void overwrite(User u) {
 		try {
 			// initialize vars
@@ -104,7 +111,7 @@ public class DBLogin implements DBHandler {
 				read = reader.nextLine();
 				compare = read.substring(0, substringLength);
 			}
-			
+
 			// found user to overwrite; add everyone else
 			while (reader.hasNext())
 				temporary.add(reader.nextLine());

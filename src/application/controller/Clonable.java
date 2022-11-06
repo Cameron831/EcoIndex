@@ -8,14 +8,20 @@ import javafx.scene.layout.Region;
 public interface Clonable {
 	default void cloning(String template, Pane destination, Region sizeAdjustment) {
 		try {
+			// load template and append to parent node. formatting taken care by controller
 			Pane pane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource(template));
 			destination.getChildren().add(pane);
 
-			// can maybe be optimized with flag, but do that later
+			// dynamic resizing the parent container when clone
 			if (sizeAdjustment.getMaxHeight() > sizeAdjustment.getHeight())
 				sizeAdjustment.setPrefHeight(sizeAdjustment.getPrefHeight() + pane.getPrefHeight());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	default void removeClone(Pane container, Pane toRemove, Region sizeAdjustment) {
+		sizeAdjustment.setPrefHeight(sizeAdjustment.getPrefHeight() - toRemove.getPrefHeight());
+		container.getChildren().remove(toRemove);
 	}
 }

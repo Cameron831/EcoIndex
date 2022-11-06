@@ -9,16 +9,16 @@ public class User {
 	private String username, password, securityQuestion, securityQuestionAnswer;
 	private List<Course> courses = new ArrayList<>();
 
+	// for database use if user has saved courses
 	public User(String un, String pw, String sq, String sqA, String convertCourse) {
-		this.username = un;
-		this.password = pw;
-		this.securityQuestion = sq;
-		this.securityQuestionAnswer = sqA;
+		this(un, pw, sq, sqA);
 
+		// initialize all courses saved on database
 		for (String i : convertCourse.split(","))
 			this.courses.add(new Course(i));
 	}
 
+	// no saved courses
 	public User(String un, String pw, String sq, String sqA) {
 		this.username = un;
 		this.password = pw;
@@ -62,25 +62,36 @@ public class User {
 		return courses;
 	}
 
+	// remove a specific course
+	public void removeCourse(String courseName) {
+		// search for specific course, then remove it once found
+		int counter = 0;
+		while (!courseName.equals(courses.get(counter).getName()))
+			counter++;
+		courses.remove(counter);
+		updateDB();
+	}
+
 	void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
+	// add a defined course
 	public Course addCourse(Course c) {
 		courses.add(c);
 		updateDB();
 		return c;
 	}
 
+	// add a new course from a string
 	public Course addCourse(String c) {
 		Course i = new Course(c);
-		courses.add(i);
-		updateDB();
-		return i;
+		return addCourse(i);
 	}
-	
+
+	// private helper method to update the database
 	private void updateDB() {
-		DBLogin db = DBLogin.getSingle();
+		TextDB_Handler db = TextDB_Handler.getSingle();
 		db.overwriteDB(this);
 	}
 }

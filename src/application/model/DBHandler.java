@@ -1,5 +1,5 @@
 package application.model;
 
 public interface DBHandler {
-	// TODO
+	// place all common methods among databases
 }

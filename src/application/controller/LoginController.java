@@ -16,6 +16,7 @@ public class LoginController implements Navigation {
 	}
 
 	@FXML public void goToResetPassword() {
+		// fetch user using username field in login page
 		String ret = usernameField.getText();
 		if (ret.isEmpty()) {
 			System.out.println("enter a username");
@@ -28,6 +29,7 @@ public class LoginController implements Navigation {
 	
 	@FXML public void loginPressed() {
 		if (ah.verificationStatus(passwordField, usernameField.getText())) {
+			// login successful
 			commonOb.setCurrentUser(ah.getUser());
 			goToPage("view/Courses.fxml");
 		}

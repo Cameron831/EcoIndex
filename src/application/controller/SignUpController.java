@@ -23,8 +23,7 @@ public class SignUpController implements Navigation {
 
 	public void initialize() {
 
-		// makes menu display current choice. we can create as many questions as we want
-		// without manually creating and setting their action methods
+		// makes menu display current choice. no need for individual action methods
 		ObservableList<MenuItem> questions = securityQuestionSelect.getItems();
 		for (MenuItem q : questions)
 			q.setOnAction(e -> {
@@ -34,7 +33,6 @@ public class SignUpController implements Navigation {
 
 	}
 
-	// navigating back to login page
 	@FXML
 	public void goToLogin() {
 		goToPage("view/Login.fxml");
@@ -42,14 +40,17 @@ public class SignUpController implements Navigation {
 
 	@FXML
 	public void signUpButtonPressed() {
+		// require user to pick security question
 		if (selected == null) {
 			System.out.println("pick a security question");
 			return;
 		}
-		
+
 		SignUpHandler handler = new SignUpHandler();
-		User testCreate = handler.newUser(usernameField.getText(), passwordField, selected.getText(), securityAnswerField);
-		
+		User testCreate = handler.newUser(usernameField.getText(), passwordField, selected.getText(),
+				securityAnswerField);
+
+		// either password or security answer was empty
 		if (testCreate != null) {
 			commonOb.setCurrentUser(testCreate);
 			goToPage("view/Courses.fxml");

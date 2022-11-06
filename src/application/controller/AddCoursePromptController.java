@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -14,16 +15,24 @@ public class AddCoursePromptController implements Navigation {
 	@FXML
 	TextArea descriptionField;
 
-	private CourseCommonObjs midlayer = CourseCommonObjs.getSingle();
-
 	@FXML
 	public void confirmButtonPressed() {
-		midlayer.setCourseName(nameField.getText());
+		addCourse(nameField.getText());
 		exitPrompt();
-		midlayer.passSignal();
 	}
 
-	@FXML public void exitPrompt() {
-		remove(midlayer.getTopPane(), promptPane);
+	private void addCourse(String name) {
+		CloneCourseInfo cloner = new CourseInfoController();
+		User u = commonOb.getCurrentUser();
+
+		// save course to database if logged in. show it locally without saving if not
+		cloner.cloneCourse(commonOb.getCourseDisplayPane(), commonOb.getScrollDisplayCoursePane(),
+				(u == null) ? new Course(name) : u.addCourse(name));
+	}
+
+	// rempve popup
+	@FXML
+	public void exitPrompt() {
+		remove(commonOb.getTopCoursePane(), promptPane);
 	}
 }

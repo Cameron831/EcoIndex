@@ -2,9 +2,11 @@ package application.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.TilePane;
 
-public class CourseInfoController implements CloneCourseInfo {
+public class CourseInfoController implements CloneCourseInfo, Navigation {
 
+	// hold the info that we want to use for clone
 	private static Course currentCourse;
 
 	void setCurrentCourse(Course c) {
@@ -17,7 +19,10 @@ public class CourseInfoController implements CloneCourseInfo {
 	Label cardTotal;
 	@FXML
 	Label cardTotalLearned;
+	@FXML
+	TilePane container;
 
+	// set the info to their corresponding spots
 	public void initialize() {
 		courseName.setText(currentCourse.getName());
 		cardTotal.setText(String.valueOf(currentCourse.getNumCards()));
@@ -25,13 +30,23 @@ public class CourseInfoController implements CloneCourseInfo {
 	}
 
 	@FXML
-	public void viewCoursePressed() {
-		System.out.println("view not implemented yet");
+	public void goToCourse() {
+		// todo
+		System.out.println("not implemented yet");
 	}
 
+	// show popup to edit course
+	// todo: need to retrieve and update
 	@FXML
 	public void editCoursePressed() {
-		// TODO delete and rename
-		System.out.println(courseName.getText());
+		popup("view/EditCoursePrompt.fxml", commonOb.getTopCoursePane());
+	}
+	
+	// remove the course in the view and update database
+	@FXML
+	public void deleteCoursePressed() {
+		removeClone(commonOb.getCourseDisplayPane(), container, commonOb.getScrollDisplayCoursePane());
+		if (commonOb.getCurrentUser() != null)
+			commonOb.getCurrentUser().removeCourse(courseName.getText());
 	}
 }

@@ -5,8 +5,7 @@ public class Course {
 	private int numCards;
 	private int learnedTotal;
 	
-	// implement index cards later
-	// private List<Card> cards;
+	// todo: implement index cards later
 	
 	public Course(String name) {
 		this.name = name;

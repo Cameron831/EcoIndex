@@ -39,10 +39,10 @@
       <MenuButton fx:id="securityQuestionSelect" layoutX="433.0" layoutY="408.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="336.0" text="Select Security Question">
         <items>
           <MenuItem mnemonicParsing="false" text="What's the name of your first pet?" />
-          <MenuItem mnemonicParsing="false" text="..." />
-            <MenuItem mnemonicParsing="false" text="Option 3" />
-            <MenuItem mnemonicParsing="false" text="Option 4" />
-            <MenuItem mnemonicParsing="false" text="Write your own (maybe idk)" />
+          <MenuItem mnemonicParsing="false" text="What is the name of your favorite pet?" />
+            <MenuItem mnemonicParsing="false" text="What was your favorite food as a child?" />
+            <MenuItem mnemonicParsing="false" text="What was the make of your first car?" />
+            <MenuItem mnemonicParsing="false" text="..." />
         </items>
          <cursor>
             <Cursor fx:constant="HAND" />

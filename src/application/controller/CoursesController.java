@@ -19,25 +19,21 @@ public class CoursesController implements Navigation {
 	@FXML
 	Pane topPane;
 
+	// load in all coursed saved to the logged in user
 	public void initialize() {
 		if (currentUser != null)
 			for (Course c : currentUser.getCourses())
 				cloner.cloneCourse(courseDisplay, scrollDisplay, c);
-	}
 
-	private static CourseCommonObjs midlayer = CourseCommonObjs.getSingle();
+		// share the containers going to be used to place courses and popups
+		commonOb.setTopCoursePane(topPane);
+		commonOb.setCourseDisplayPane(courseDisplay);
+		commonOb.setScrollDisplayCoursePane(scrollDisplay);
+	}
 
 	@FXML
 	public void addCoursePressed() {
-		midlayer.setTopPane(topPane);
-		midlayer.setCourseDisplayPane(courseDisplay);
-		midlayer.setScrollDisplayPane(scrollDisplay);
 		popup("view/AddCoursePrompt.fxml", topPane);
-	}
-
-	void createCourse(String name) {
-		cloner.cloneCourse(midlayer.getCourseDisplayPane(), midlayer.getScrollDisplayPane(),
-				(currentUser == null) ? new Course(name) : currentUser.addCourse(name));
 	}
 
 	@FXML

@@ -1,12 +1,12 @@
 package application.controller;
 
-import application.model.DBLogin;
+import application.model.TextDB_Handler;
 import application.model.User;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class AccountHandler {
-	private DBLogin checkDatabase = DBLogin.getSingle();
+	private TextDB_Handler checkDatabase = TextDB_Handler.getSingle();
 	private User user;
 
 	private String encrypt(String toEncrypt) {
@@ -22,7 +22,8 @@ public class AccountHandler {
 	public String getEncrypt(String toEncrypt) {
 		return encrypt(toEncrypt);
 	}
-
+	
+	// user has been saved into the private variable. we read from it
 	User getUser() {
 		return user;
 	}
@@ -31,7 +32,8 @@ public class AccountHandler {
 		getUserDB(un);
 		return user;
 	}
-
+	
+	// search and fetch user from the database
 	private User getUserDB(String un) {
 		user = checkDatabase.getUser(un);
 		return user;
@@ -42,11 +44,13 @@ public class AccountHandler {
 		String attemptPW = pw.getText();
 		return attemptPW.equals(decrypt(user.getPassword()));
 	}
-
+	
+	// public method for logging in
 	public boolean verificationStatus(PasswordField pw, String un) {
 		return verification(pw, un);
 	}
 
+	// public method for resetting password
 	public boolean verifyQuestionStatus(User tempUser, TextField attemptAnswer, PasswordField newPasswordField) {
 		user = tempUser;
 		return verifyQuestion(attemptAnswer, newPasswordField);
@@ -54,7 +58,6 @@ public class AccountHandler {
 
 	private boolean verifyQuestion(TextField attemptAnswer, PasswordField newPasswordField) {
 		String correctAns = decrypt(user.getSecurityQuestionAnswer());
-//		System.out.println(user.getSecurityQuestionAnswer())
 		if (!correctAns.equals(attemptAnswer.getText()))
 			return false;
 		checkDatabase.updateUser(user, encrypt(newPasswordField.getText()));
