@@ -10,4 +10,12 @@ public interface CloneCourseInfo extends Clonable {
 		comm.setCurrentCourse(c);
 		cloning("view/CourseInfoTemplate.fxml", courseDisplay, sizeAdjustment);
 	}
+	
+	@Override
+	default void removeClone(Pane container, Pane toRemove, Region sizeAdjustment) {
+		double height = container.getHeight() + toRemove.getHeight();
+		container.getChildren().remove(toRemove);
+		if (height < sizeAdjustment.getHeight())
+			sizeAdjustment.setPrefHeight(sizeAdjustment.getPrefHeight() - toRemove.getPrefHeight());
+	}
 }

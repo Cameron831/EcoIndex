@@ -6,7 +6,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class CoursesController implements Navigation {
+public class CoursesController implements CloneCourseInfo, Navigation {
 
 	@FXML
 	VBox courseDisplay;
@@ -14,7 +14,6 @@ public class CoursesController implements Navigation {
 	ScrollPane scrollDisplay;
 
 	private User currentUser = commonOb.getCurrentUser();
-	private CloneCourseInfo cloner = new CourseInfoController();
 
 	@FXML
 	Pane topPane;
@@ -23,12 +22,14 @@ public class CoursesController implements Navigation {
 	public void initialize() {
 		if (currentUser != null)
 			for (Course c : currentUser.getCourses())
-				cloner.cloneCourse(courseDisplay, scrollDisplay, c);
+				cloneCourse(courseDisplay, scrollDisplay, c);
 
 		// share the containers going to be used to place courses and popups
 		commonOb.setTopCoursePane(topPane);
 		commonOb.setCourseDisplayPane(courseDisplay);
 		commonOb.setScrollDisplayCoursePane(scrollDisplay);
+		
+		commonOb.getRootStage().setTitle("Courses - EcoIndex");
 	}
 
 	@FXML
@@ -39,6 +40,7 @@ public class CoursesController implements Navigation {
 	@FXML
 	public void logOutPressed() {
 		commonOb.setCurrentUser(null);
+		commonOb.getRootStage().setTitle("EcoIndex");
 		goToPage("view/Welcome.fxml");
 	}
 }

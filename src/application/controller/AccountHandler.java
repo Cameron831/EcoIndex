@@ -2,20 +2,26 @@ package application.controller;
 
 import application.model.TextDB_Handler;
 import application.model.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class AccountHandler {
+	
+	private PassUtil passUtil = new PassUtil();
+	
 	private TextDB_Handler checkDatabase = TextDB_Handler.getSingle();
 	private User user;
 
 	private String encrypt(String toEncrypt) {
 		// encryption/decryption later
+//		return passUtil.encrypt(toEncrypt);
 		return toEncrypt;
 	}
 
 	private String decrypt(String toDecrypt) {
 		// encryption/decryption later
+//		return passUtil.decrypt(toDecrypt);
 		return toDecrypt;
 	}
 

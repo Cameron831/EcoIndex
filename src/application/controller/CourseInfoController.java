@@ -1,8 +1,14 @@
 package application.controller;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 
 public class CourseInfoController implements CloneCourseInfo, Navigation {
 
@@ -32,8 +38,25 @@ public class CourseInfoController implements CloneCourseInfo, Navigation {
 	@FXML
 	public void goToCourse() {
 		// todo
-		System.out.println("not implemented yet");
+//		System.out.println("not implemented yet");
+		createWindow("view/CoursePageTemplate.fxml");
 	}
+	
+	private void createWindow(String url) {
+		try {
+			Pane pane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource(Navigation.fileDestination + url));
+			Stage newWindow = new Stage();
+			newWindow.setTitle(courseName.getText());
+			newWindow.setScene(new Scene(pane));
+			newWindow.show();
+			newWindow.setX(newWindow.getX() + 30);
+			newWindow.setY(newWindow.getY() + 35);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 	// show popup to edit course
 	@FXML

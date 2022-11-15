@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CoursePageTemplateController">
+   <children>
+      <Label layoutX="105.0" layoutY="82.0" text="Course Title Placeholder">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <Label layoutX="105.0" layoutY="163.0" text="Description goes here" />
+      <Label layoutX="105.0" layoutY="292.0" text="Index cards display here" />
+   </children>
+</AnchorPane>
