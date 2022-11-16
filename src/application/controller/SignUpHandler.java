@@ -1,13 +1,13 @@
 package application.controller;
 
-import application.model.TextDB_Handler;
 import application.model.User;
+import application.model.UserSQL;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 class SignUpHandler {
 
-	private TextDB_Handler checkDatabase = TextDB_Handler.getSingle();
+	private UserSQL checkDatabase = UserSQL.getSingle();
 	private AccountHandler ph = new AccountHandler();
 
 	User newUser(String un, PasswordField pw, String sq, TextField sqA) {

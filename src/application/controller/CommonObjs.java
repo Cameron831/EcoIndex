@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.model.Course;
 import application.model.User;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;

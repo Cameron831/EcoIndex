@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>EcoIndex</name>
+	<name>team-03-09</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -20,16 +20,4 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/resources/view/Courses.fxml</name>
-			<type>1</type>
-			<location>C:/Users/bbqia/eclipse-workspace/EcoIndex2/resources/view/Courses.fxml</location>
-		</link>
-		<link>
-			<name>src/resources/view/SignUp.fxml</name>
-			<type>1</type>
-			<location>C:/Users/bbqia/eclipse-workspace/EcoIndex2/resources/view/SignUp.fxml</location>
-		</link>
-	</linkedResources>
 </projectDescription>

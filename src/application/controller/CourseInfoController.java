@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 
+import application.model.Course;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

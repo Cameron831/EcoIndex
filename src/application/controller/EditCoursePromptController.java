@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.model.Course;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.TextField;

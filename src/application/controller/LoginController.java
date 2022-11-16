@@ -22,7 +22,11 @@ public class LoginController implements Navigation {
 			System.out.println("enter a username");
 			return;
 		}
-		commonOb.setTempUser(ah.getUser(ret));
+		ah.getUser(ret);
+		
+		if (ah.getUser() == null) return;
+		
+		commonOb.setTempUser(ah.getUser());
 		goToPage("view/ResetPassword.fxml");
 	}
 
@@ -31,6 +35,8 @@ public class LoginController implements Navigation {
 		if (ah.verificationStatus(passwordField, usernameField.getText())) {
 			// login successful
 			commonOb.setCurrentUser(ah.getUser());
+			
+			commonOb.getCurrentUser().initializeCourses();
 			goToPage("view/Courses.fxml");
 		}
 		else

@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.model.Course;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 

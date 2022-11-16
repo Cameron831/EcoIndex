@@ -1,12 +1,13 @@
 package application.controller;
 
+import application.model.Course;
 import application.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 
-public class AddCoursePromptController implements Navigation {
+public class AddCoursePromptController implements CloneCourseInfo, Navigation {
 
 	@FXML
 	StackPane promptPane;
@@ -17,17 +18,16 @@ public class AddCoursePromptController implements Navigation {
 
 	@FXML
 	public void confirmButtonPressed() {
-		addCourse(nameField.getText());
+		addCourse(nameField.getText(), descriptionField.getText());
 		exitPrompt();
 	}
 
-	private void addCourse(String name) {
-		CloneCourseInfo cloner = new CourseInfoController();
+	private void addCourse(String name, String desc) {
 		User u = commonOb.getCurrentUser();
 
 		// save course to database if logged in. show it locally without saving if not
-		cloner.cloneCourse(commonOb.getCourseDisplayPane(), commonOb.getScrollDisplayCoursePane(),
-				(u == null) ? new Course(name) : u.addCourse(name));
+		cloneCourse(commonOb.getCourseDisplayPane(), commonOb.getScrollDisplayCoursePane(),
+				(u == null) ? new Course(name, desc) : u.addCourse(name, desc));
 	}
 
 	// rempve popup

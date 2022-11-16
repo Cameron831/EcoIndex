@@ -12,7 +12,6 @@ public interface Navigation {
 	public static final CommonObjs commonOb = CommonObjs.getSingle();
 	
 	public static final String fileDestination = "resources/";
-	// todo: all are stored in view folder, so can set as constant here
 
 	// go to another page
 	default Pane goToPage(String url) {

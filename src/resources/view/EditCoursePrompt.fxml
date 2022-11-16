@@ -14,19 +14,19 @@
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" style="-fx-background-color: white;">
          <children>
+            <TextField fx:id="newNameField" layoutX="68.0" layoutY="167.0" prefHeight="48.0" prefWidth="336.0" promptText="New Name" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextArea fx:id="newDescriptionField" layoutX="68.0" layoutY="272.0" prefHeight="245.0" prefWidth="795.0" promptText="New Description" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;" />
             <Button layoutX="751.0" layoutY="539.0" mnemonicParsing="false" onAction="#saveChangesPressed" text="Save Changes" />
             <Label alignment="CENTER" layoutX="361.0" layoutY="48.0" text="Edit Course">
                <font>
                   <Font size="42.0" />
                </font>
             </Label>
-            <TextField fx:id="newNameField" layoutX="68.0" layoutY="167.0" prefHeight="48.0" prefWidth="336.0" promptText="New Name" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </TextField>
             <Label layoutX="68.0" layoutY="135.0" text="Current Course Name" />
-            <TextArea fx:id="newDescriptionField" layoutX="68.0" layoutY="272.0" prefHeight="245.0" prefWidth="795.0" promptText="New Description" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;" />
             <Label layoutX="68.0" layoutY="236.0" text="Current Description (to be implemented)" />
             <Pane layoutX="832.0" layoutY="17.0" onMouseClicked="#exitPrompt" prefHeight="62.0" prefWidth="60.0">
                <children>

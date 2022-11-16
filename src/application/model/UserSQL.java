@@ -5,8 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// not in final use yet
-public class UserSQL {
+public class UserSQL implements DBHandler {
 	private Connection connection;
 
 	// singleton essentials
@@ -79,7 +78,9 @@ public class UserSQL {
 		String query = "SELECT * FROM tbusers WHERE userName = ?";
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, un);
-		return preparedStatement.executeQuery();
+		ResultSet test = preparedStatement.executeQuery();
+		if (!test.next()) throw new SQLException("user not found");
+		return test;
 	}
 
 	private User compactToUser(String un) throws SQLException {
@@ -120,41 +121,4 @@ public class UserSQL {
 			throw new SQLException("could not add user to database");
 		return new User(un, pw, sq, sqA);
 	}
-
-//	public boolean isLogin(String user, String pass) throws SQLException {
-//		ResultSet userInfo = searchUsername(user);
-//		if (!userInfo.next()) {
-//			System.out.println("user cannot be found");
-//			return false;
-//		}
-//		boolean result = pass.equals(userInfo.getString("passwd"));
-//		userInfo.close();
-//		return result;
-//	}
-
-//	public boolean isSignUp(String user, String pass, String question, String answer) throws SQLException {
-//		PreparedStatement preparedStatement = null;
-//		int resultSet = 0;
-//		String query = "INSERT INTO tbUsers(userName,passwd,securityQuestion,securityQuestionAnswer) VALUES(?,?,?,?)";
-//		try {
-//			preparedStatement = connection.prepareStatement(query);
-//			preparedStatement.setString(1, user);
-//			preparedStatement.setString(2, pass);
-//			preparedStatement.setString(3, question);
-//			preparedStatement.setString(4, answer);
-//
-//			resultSet = preparedStatement.executeUpdate();
-//			if (resultSet > 0) {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//		} catch (Exception e) {
-//			return false;
-//			// TODO: handle exception
-//		} finally {
-//			preparedStatement.close();
-//		}
-//	}
-
 }

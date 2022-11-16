@@ -3,20 +3,18 @@ package application.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.controller.Course;
-
 public class User {
 	private String username, password, securityQuestion, securityQuestionAnswer;
 	private List<Course> courses = new ArrayList<>();
 
 	// for database use if user has saved courses
-	public User(String un, String pw, String sq, String sqA, String convertCourse) {
-		this(un, pw, sq, sqA);
-
-		// initialize all courses saved on database
-		for (String i : convertCourse.split(","))
-			this.courses.add(new Course(i));
-	}
+//	public User(String un, String pw, String sq, String sqA, String convertCourse) {
+//		this(un, pw, sq, sqA);
+//
+//		// initialize all courses saved on database
+//		for (String i : convertCourse.split(","))
+//			this.courses.add(new Course(i));
+//	}
 
 	// no saved courses
 	public User(String un, String pw, String sq, String sqA) {
@@ -86,19 +84,26 @@ public class User {
 	// add a defined course
 	public Course addCourse(Course c) {
 		courses.add(c);
-		updateDB();
+//		updateDB();
+		CourseSQL db = CourseSQL.getSingle();
+		db.addCourse(this, c);
 		return c;
 	}
 
 	// add a new course from a string
-	public Course addCourse(String c) {
-		Course i = new Course(c);
+	public Course addCourse(String c, String d) {
+		Course i = new Course(c,d);
 		return addCourse(i);
+	}
+	
+	public void initializeCourses() {
+		CourseSQL db = CourseSQL.getSingle();
+		courses = db.getAllCoursesFromUser(this);
 	}
 
 	// update the database
 	public void updateDB() {
-		TextDB_Handler db = TextDB_Handler.getSingle();
-		db.overwriteDB(this);
+//		CourseSQL db = CourseSQL.getSingle();
+//		db.overwriteDB(this);
 	}
 }

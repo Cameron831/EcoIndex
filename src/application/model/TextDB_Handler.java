@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import application.controller.Course;
-
 public class TextDB_Handler implements DBHandler {
 	// singleton essentials
 	private static TextDB_Handler singleInstance = new TextDB_Handler();

@@ -50,12 +50,10 @@ public class SignUpController implements Navigation {
 		User testCreate = handler.newUser(usernameField.getText(), passwordField, selected.getText(),
 				securityAnswerField);
 
-		// either password or security answer was empty
+		// password or security answer was empty, or username is taken
 		if (testCreate != null) {
 			commonOb.setCurrentUser(testCreate);
 			goToPage("view/Courses.fxml");
 		} 
-		else
-			System.out.println("sign up failed");
 	}
 }

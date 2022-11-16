@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class SqliteConnection {
-	// !!!!IMPORTANT (driver)
-	
 	public static Connection Connector(){
 		try {
 			Class.forName("org.sqlite.JDBC");
