@@ -17,6 +17,7 @@ public class EditCoursePromptController implements Navigation {
 	
 	public void initialize() {
 		newNameField.setText(currentCourse.getName());
+		newDescriptionField.setText(currentCourse.getDescription());
 	}
 	
 	@FXML public void exitPrompt() {
@@ -25,6 +26,7 @@ public class EditCoursePromptController implements Navigation {
 	
 	@FXML public void saveChangesPressed() {
 		currentCourse.setName(newNameField.getText());
+		currentCourse.setDescription(newDescriptionField.getText());
 		commonOb.getCurrentUser().updateDB();
 		goToPage("view/Courses.fxml");
 	}

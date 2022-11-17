@@ -35,7 +35,6 @@ public class LoginController implements Navigation {
 		if (ah.verificationStatus(passwordField, usernameField.getText())) {
 			// login successful
 			commonOb.setCurrentUser(ah.getUser());
-			
 			commonOb.getCurrentUser().initializeCourses();
 			goToPage("view/Courses.fxml");
 		}

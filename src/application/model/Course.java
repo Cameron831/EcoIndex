@@ -5,28 +5,23 @@ public class Course {
 	private String description;
 	private int numCards;
 	private int learnedTotal;
-	
-	// todo: implement index cards later
-	
+
+	// creating a brand new course with no cards
 	public Course(String name, String desc) {
 		this.name = name;
 		this.description = desc;
-		
-		// temporary for now
 		this.numCards = 0;
 		this.learnedTotal = 0;
 	}
 	
-
+	// retrieving old courses saved from database
 	public Course(String name, String description, String numCards) {
 		this.name = name;
-		this.description = description;
-		
+		this.description = description;		
 		this.numCards = Integer.parseInt(numCards);
-		// temporary for now
-		this.numCards = 0;
-		this.learnedTotal = 0;
+		// TODO need to add learned
 	}
+	
 	public String getDescription() {
 		return description;
 	}

@@ -1,20 +1,19 @@
 package application.model;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserSQL implements DBHandler {
-	private Connection connection;
+//	private Connection connection;
 
 	// singleton essentials
 	private static UserSQL singleInstance = new UserSQL();
 
 	private UserSQL() {
-		connection = SqliteConnection.Connector();
-		if (connection == null)
-			System.exit(1);
+//		connection = SqliteConnection.Connector();
+//		if (connection == null)
+//			System.exit(1);
 	};
 
 	public static UserSQL getSingle() {
@@ -27,6 +26,16 @@ public class UserSQL implements DBHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public void closeConnection() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("broke");
 		}
 	}
 
@@ -45,7 +54,6 @@ public class UserSQL implements DBHandler {
 		preparedStatement.setString(1, newData);
 		preparedStatement.setString(2, user);
 		preparedStatement.executeUpdate();
-
 	}
 
 	public boolean resetPassword(User u, String pw) {
@@ -119,6 +127,7 @@ public class UserSQL implements DBHandler {
 		preparedStatement.setString(4, sqA);
 		if (preparedStatement.executeUpdate() <= 0)
 			throw new SQLException("could not add user to database");
+		
 		return new User(un, pw, sq, sqA);
 	}
 }
