@@ -26,7 +26,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="445.0" layoutY="484.0" mnemonicParsing="false" onAction="#goToCourses" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10; -fx-background-color: blue;" text="NO LOGIN MODE" textFill="WHITE">
+            <Button layoutX="445.0" layoutY="484.0" mnemonicParsing="false" onAction="#goToCourses" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10; -fx-background-color: blue;" text="TRY AS GUEST" textFill="WHITE">
                <font>
                   <Font name="Gill Sans" size="13.0" />
                </font>

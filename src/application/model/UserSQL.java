@@ -3,6 +3,7 @@ package application.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserSQL implements DBHandler {
 //	private Connection connection;
@@ -44,6 +45,7 @@ public class UserSQL implements DBHandler {
 	private final static String password = "passwd";
 	private final static String securityQuestion = "securityQuestion";
 	private final static String securityAnswer = "securityQuestionAnswer";
+	private final static String ID = "ID";
 
 	// general purpose method to overwrite/update info
 	private void overwriteColumn(String user, String column, String newData) throws SQLException {
@@ -94,7 +96,7 @@ public class UserSQL implements DBHandler {
 	private User compactToUser(String un) throws SQLException {
 		ResultSet user = searchUsername(un);
 		return new User(user.getString(username), user.getString(password), user.getString(securityQuestion),
-				user.getString(securityAnswer));
+				user.getString(securityAnswer), user.getInt(ID));
 	}
 
 	// publicly called by outside
@@ -112,6 +114,7 @@ public class UserSQL implements DBHandler {
 		try {
 			return writeNewUser(un, pw, sq, sqA);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("was not able to create user. make sure username is unique");
 			return null;
 		}
@@ -120,7 +123,7 @@ public class UserSQL implements DBHandler {
 	private User writeNewUser(String un, String pw, String sq, String sqA) throws SQLException {
 		PreparedStatement preparedStatement;
 		String query = "INSERT INTO tbUsers(userName,passwd,securityQuestion,securityQuestionAnswer) VALUES(?,?,?,?)";
-		preparedStatement = connection.prepareStatement(query);
+		preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		preparedStatement.setString(1, un);
 		preparedStatement.setString(2, pw);
 		preparedStatement.setString(3, sq);
@@ -128,6 +131,7 @@ public class UserSQL implements DBHandler {
 		if (preparedStatement.executeUpdate() <= 0)
 			throw new SQLException("could not add user to database");
 		
-		return new User(un, pw, sq, sqA);
+		ResultSet justInserted = preparedStatement.getGeneratedKeys();
+		return new User(un, pw, sq, sqA, justInserted.getInt(1));
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class User {
 	private String username, password, securityQuestion, securityQuestionAnswer;
 	private List<Course> courses = new ArrayList<>();
+	private int ID;
 
 	// for database use if user has saved courses
 //	public User(String un, String pw, String sq, String sqA, String convertCourse) {
@@ -17,11 +18,16 @@ public class User {
 //	}
 
 	// no saved courses
-	public User(String un, String pw, String sq, String sqA) {
+	public User(String un, String pw, String sq, String sqA, int ID) {
 		this.username = un;
 		this.password = pw;
 		this.securityQuestion = sq;
 		this.securityQuestionAnswer = sqA;
+		this.ID = ID;
+	}
+
+	int getID() {
+		return ID;
 	}
 
 	public String getUsername() {
@@ -61,18 +67,19 @@ public class User {
 	}
 
 	// remove a specific course
-	public void removeCourse(String courseName) {
+	public void removeCourse(Course course) {
 		// search for specific course, then remove it once found
-		int counter = 0;
-		while (!courseName.equals(courses.get(counter).getName()))
-			counter++;
-		courses.remove(counter);
+//		int counter = 0;
+//		while (!courses.get(counter).equals(courseName))
+//			counter++;
+//		courses.remove(counter);
+		courses.remove(course);
 		updateDB();
 	}
-	
-	public Course searchCourse(String courseName) {
+
+	public Course searchCourse(Course course) {
 		for (Course c : courses)
-			if (courseName.equals(c.getName()))
+			if (c.equals(course))
 				return c;
 		return null;
 	}
@@ -83,19 +90,20 @@ public class User {
 
 	// add a defined course
 	public Course addCourse(Course c) {
-		courses.add(c);
-//		updateDB();
-		CourseSQL db = CourseSQL.getSingle();
-		db.addCourse(this, c);
-		return c;
+//		CourseSQL db = CourseSQL.getSingle();
+		Course fin = c.addCourse(this);
+				
+//				db.addCourse(this, c);
+		courses.add(fin);
+		return fin;
 	}
 
 	// add a new course from a string
 	public Course addCourse(String c, String d) {
-		Course i = new Course(c,d);
+		Course i = new Course(c, d);
 		return addCourse(i);
 	}
-	
+
 	public void initializeCourses() {
 		CourseSQL db = CourseSQL.getSingle();
 		courses = db.getAllCoursesFromUser(this);

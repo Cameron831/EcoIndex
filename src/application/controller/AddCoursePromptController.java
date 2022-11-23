@@ -24,10 +24,13 @@ public class AddCoursePromptController implements CloneCourseInfo, Navigation {
 
 	private void addCourse(String name, String desc) {
 		User u = commonOb.getCurrentUser();
+		Course toCreate = new Course(name, desc);
 
 		// save course to database if logged in. show it locally without saving if not
 		cloneCourse(commonOb.getCourseDisplayPane(), commonOb.getScrollDisplayCoursePane(),
-				(u == null) ? new Course(name, desc) : u.addCourse(name, desc));
+				(u == null) ? toCreate : 
+//					toCreate.addCourse(u));
+					u.addCourse(toCreate));
 	}
 
 	// rempve popup
