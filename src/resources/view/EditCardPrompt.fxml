@@ -10,25 +10,25 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="promptPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: rgba(0,0,0,0.1);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.AddCardPromptController">
+<StackPane fx:id="promptPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: rgba(0,0,0,0.1);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.EditCardPromptController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" style="-fx-background-color: white;">
          <children>
-            <TextArea fx:id="answerField" layoutX="68.0" layoutY="353.0" prefHeight="150.0" prefWidth="795.0" promptText="Answer" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;" wrapText="true" />
-            <Button layoutX="789.0" layoutY="538.0" mnemonicParsing="false" onAction="#confirmButtonPressed" text="Confirm">
+            <TextArea fx:id="answerField" layoutX="68.0" layoutY="353.0" prefHeight="150.0" prefWidth="795.0" promptText="New Answer" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;" wrapText="true" />
+            <Button layoutX="751.0" layoutY="538.0" mnemonicParsing="false" onAction="#saveChangesPressed" text="Save Changes">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label layoutX="331.0" layoutY="48.0" text="Add New Card">
+            <Label layoutX="382.0" layoutY="48.0" text="Edit Card">
                <font>
                   <Font size="42.0" />
                </font>
             </Label>
-            <Label layoutX="68.0" layoutY="118.0" text="Question on new card">
+            <Label layoutX="68.0" layoutY="118.0" text="Current Question">
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Label layoutX="68.0" layoutY="318.0" text="Answer on new card">
+            <Label layoutX="68.0" layoutY="318.0" text="Current Answer">
                <font>
                   <Font size="16.0" />
                </font></Label>
@@ -41,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <TextArea fx:id="questionField" layoutX="68.0" layoutY="154.0" prefHeight="150.0" prefWidth="795.0" promptText="Question" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;" wrapText="true" />
+            <TextArea fx:id="questionField" layoutX="68.0" layoutY="154.0" prefHeight="150.0" prefWidth="795.0" promptText="New Question" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;" wrapText="true" />
             <CheckBox fx:id="learnedCheckbox" layoutX="68.0" layoutY="538.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" text="Learned">
                <font>
                   <Font size="18.0" />

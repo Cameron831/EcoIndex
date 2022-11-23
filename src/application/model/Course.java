@@ -7,7 +7,7 @@ public class Course {
 	private String name;
 	private String description;
 	private int numCards;
-	private int learnedTotal;
+	private int learnedTotal = 0;
 	private List<Card> cards = new ArrayList<>();
 
 	public List<Card> getCards() {
@@ -96,12 +96,17 @@ public class Course {
 	public Card addCard(Card tempCard) {
 		Card newCard = tempCard.addCard(this);
 		cards.add(newCard);
+		numCards++;
 		return newCard;
 	}
 
 	public void initializeCards() {
 		CardSQL db = CardSQL.getSingle();
 		cards = db.getAllCardsFromCourse(this);
+//		numCards = cards.size();
+//		for (Card i : cards)
+//			if (i.isLearned())
+//				learnedTotal++;
 		// TODO Auto-generated method stub
 		
 	}

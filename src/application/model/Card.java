@@ -4,24 +4,24 @@ public class Card {
 	private String question;
 	private String answer;
 	private boolean learned;
-	
+
 	private int ID;
-	
+
 	public Card(String question, String answer, boolean learned) {
 		this.question = question;
 		this.answer = answer;
 		this.learned = learned;
 		this.ID = -1;
-		
+
 	}
-	
+
 	public Card(String question, String answer, boolean learned, int ID) {
 		this.question = question;
 		this.answer = answer;
 		this.learned = learned;
 		this.ID = ID;
 	}
-	
+
 	int getID() {
 		return ID;
 	}
@@ -53,8 +53,10 @@ public class Card {
 	public Card addCard(Course course) {
 		CardSQL db = CardSQL.getSingle();
 		return db.addCard(course, this);
-		
-		// TODO Auto-generated method stub
-		
+	}
+
+	public void updateCard() {
+		CardSQL db = CardSQL.getSingle();
+		db.updateCard(this);
 	}
 }

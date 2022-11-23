@@ -2,16 +2,31 @@ package application.controller;
 
 import application.model.Card;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
-public class IndexCardTemplateController implements Navigation {
+public class IndexCardTemplateController implements Navigation, CloneCardInfo {
 
 	@FXML Label questionLabel;
 	@FXML Label answerLabel;
 	
 	private Card currentCard;
 	@FXML CheckBox learnedCheckbox;
+	@FXML AnchorPane cardPane;
+	
+	
+	void renameCardQuestion(String newName) {
+		questionLabel.setText(newName);
+	}
+	
+	void renameCardAnswer(String newName) {
+		answerLabel.setText(newName);
+	}
+	
+	void setCheckboxState(boolean b) {
+		learnedCheckbox.setSelected(b);
+	}
 	
 	public void initialize() {
 		currentCard = commonOb.getCurrentCard();
@@ -25,10 +40,13 @@ public class IndexCardTemplateController implements Navigation {
 	}
 
 	@FXML public void editCard() {
-		System.out.println("modify button pressed");
+		commonOb.setCurrentCard(currentCard);
+		commonOb.setCurrentCardEdit(this);
+		popup("view/EditCardPrompt.fxml",commonOb.getTopCoursePagePane());
 	}
 
-	@FXML public void deleteCard() {
-		System.out.println("delete button pressed");
+	@FXML
+	public void deleteCard() {
+		removeClone(commonOb.getIndexCardDisplayPane(), cardPane, commonOb.getCardScrollDisplayPane());
 	}
 }

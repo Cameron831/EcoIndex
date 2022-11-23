@@ -62,9 +62,10 @@ public class CourseSQL implements DBHandler {
 			preparedStatement.setString(3, c.getDescription());
 			preparedStatement.setInt(4, c.getNumCards());
 			preparedStatement.executeUpdate();
-			
-			return new Course(c.getName(),c.getDescription(),c.getNumCards(),preparedStatement.getGeneratedKeys().getInt(1));
-			
+
+			return new Course(c.getName(), c.getDescription(), c.getNumCards(),
+					preparedStatement.getGeneratedKeys().getInt(1));
+
 //			return preparedStatement.getGeneratedKeys().getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -73,30 +74,6 @@ public class CourseSQL implements DBHandler {
 			return null;
 		}
 
-	}
-
-	// TODO: maybe dont need
-	private ResultSet searchCourse(User u, Course c) throws SQLException {
-		PreparedStatement ps;
-		String query = "SELECT * FROM tbCourses WHERE userName = ? AND courseName = ?";
-		ps = connection.prepareStatement(query);
-		ps.setString(1, u.getUsername());
-		ps.setString(2, c.getName());
-		ResultSet test = ps.executeQuery();
-		if (!test.next())
-			throw new SQLException("course not found");
-		return test;
-	}
-
-	// general purpose method to overwrite/update info
-	private void overwriteColumn(String user, String column, String newData) throws SQLException {
-		PreparedStatement preparedStatement;
-//		String query = "UPDATE tbUsers set " + column + " = ? WHERE " + username + " = ?";
-		String query = "UPDATE tbCourses set " + column + " = ? WHERE userName = ? AND";
-		preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setString(1, newData);
-		preparedStatement.setString(2, user);
-		preparedStatement.executeUpdate();
 	}
 
 	// TODO need to be able to edit course
@@ -118,17 +95,4 @@ public class CourseSQL implements DBHandler {
 	}
 
 	// TODO need to add how to delete course
-
-	public static void main(String[] args) {
-		User test = new User("test", "pw", "q", "a", 1000);
-//		CourseSQL x = new CourseSQL();
-		List<Course> t = getSingle().getAllCoursesFromUser(test);
-		for (Course c : t)
-			System.out.println(c);
-		System.out.println(getSingle().isDbConnected());
-
-		getSingle().addCourse(test, new Course("abct", "desc"));
-		System.out.println("work");
-
-	}
 }

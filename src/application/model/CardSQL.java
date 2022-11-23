@@ -72,4 +72,21 @@ public class CardSQL implements DBHandler {
 		}
 		return cards;
 	}
+
+	public void updateCard(Card card) {
+		try {
+			PreparedStatement preparedStatement;
+			String query = "UPDATE tbCards SET cardQuestion = ?, cardAnswer = ?, learned = ? WHERE ID = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, card.getQuestion());
+			preparedStatement.setString(2, card.getAnswer());
+			preparedStatement.setInt(3, convertBooleanToInt(card.isLearned()));
+			preparedStatement.setInt(4, card.getID());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

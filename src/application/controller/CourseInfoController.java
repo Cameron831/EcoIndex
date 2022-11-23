@@ -26,6 +26,7 @@ public class CourseInfoController implements CloneCourseInfo, Navigation {
 	// set the info to their corresponding spots
 	public void initialize() {
 		currentCourse = commonOb.getCurrentCourse();
+		currentCourse.initializeCards();
 		courseName.setText(currentCourse.getName());
 		cardTotal.setText(String.valueOf(currentCourse.getNumCards()));
 		cardTotalLearned.setText(String.valueOf(currentCourse.getLearnedTotal()));
@@ -34,7 +35,6 @@ public class CourseInfoController implements CloneCourseInfo, Navigation {
 	@FXML
 	public void goToCourse() {
 		commonOb.setOpenedCourse(currentCourse);
-		currentCourse.initializeCards();
 		goToPage("view/CoursePageTemplate.fxml");
 	}
 

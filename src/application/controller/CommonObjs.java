@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.util.List;
+
 import application.model.Card;
 import application.model.Course;
 import application.model.User;
@@ -166,5 +168,27 @@ public class CommonObjs {
 	}
 	
 	private Pane topCoursePagePane;
+	
+	
+	public IndexCardTemplateController getCurrentCardEdit() {
+		return currentCardEdit;
+	}
+
+	public void setCurrentCardEdit(IndexCardTemplateController currentCardEdit) {
+		this.currentCardEdit = currentCardEdit;
+	}
+
+	private IndexCardTemplateController currentCardEdit;
+	
+	
+	private List<Card> reviewCards;
+
+	public List<Card> getReviewCards() {
+		return reviewCards;
+	}
+
+	public void setReviewCards(List<Card> reviewCards) {
+		this.reviewCards = reviewCards;
+	}
 
 }

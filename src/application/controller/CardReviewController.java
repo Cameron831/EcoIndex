@@ -55,7 +55,7 @@ public class CardReviewController {
 	private final static double questionPrefHeightBeforeFlip = 400;
 	private final static double questionPrefHeightAfterFlip = 227;
 
-	private List<Card> pool = CommonObjs.getSingle().getOpenedCourse().getCards();
+	private List<Card> pool = CommonObjs.getSingle().getReviewCards();
 //	private ListIterator<Card> iterate;
 	private int currentIndex = 0;
 	private Card currentCard;
@@ -104,9 +104,9 @@ public class CardReviewController {
 //
 //		pool = list;
 		
-		for (Card m : pool)
-			if (m.isLearned())
-				learnedTotal++;
+//		for (Card m : pool)
+//			if (m.isLearned())
+//				learnedTotal++;
 		
 		Collections.shuffle(pool);
 		currentCard = pool.get(currentIndex);

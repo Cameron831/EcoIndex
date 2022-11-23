@@ -1,6 +1,8 @@
 package application.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import application.model.Card;
 import application.model.Course;
@@ -18,7 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class CoursePageController implements Navigation,CloneCardInfo {
+public class CoursePageController implements Navigation, CloneCardInfo {
 
 	@FXML
 	Label courseTitle;
@@ -30,19 +32,26 @@ public class CoursePageController implements Navigation,CloneCardInfo {
 	Label reviewSelection;
 	@FXML
 	ToolBar toolBar;
-	@FXML VBox indexCardDisplay;
-	@FXML AnchorPane topPane;
-	@FXML ScrollPane cardScrollDisplay;
+	@FXML
+	VBox indexCardDisplay;
+	@FXML
+	AnchorPane topPane;
+	@FXML
+	ScrollPane cardScrollDisplay;
+
+	private List<Card> reviewPool;
+
+	private enum CourseType {
+		ALL, LEARNED, NOTLEARNED;
+	}
+
+	private CourseType courseType = CourseType.ALL;
 
 	public void initialize() {
 		commonOb.setIndexCardDisplayPane(indexCardDisplay);
 		commonOb.setCardScrollDisplayPane(cardScrollDisplay);
 		commonOb.setTopCoursePagePane(topPane);
-		
-		
-		
-		
-		
+
 		currentCourse = commonOb.getOpenedCourse();
 		courseTitle.setText("Course " + currentCourse.getName());
 		if (!currentCourse.getDescription().isEmpty())
@@ -50,52 +59,43 @@ public class CoursePageController implements Navigation,CloneCardInfo {
 
 		ObservableList<Node> buttons = toolBar.getItems();
 		for (Node q : buttons)
-//			q.setOnAction(e -> {
-//				securityQuestionSelect.setText(q.getText());
-//				selected = q;
-//			});
 			q.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
 				reviewSelection.setText(q.getAccessibleText());
 			});
-		
-		
-		for (Card c : currentCourse.getCards())
-			cloneCard(indexCardDisplay, cardScrollDisplay,c);
-		
-		
-		
-		
-		
-//		Card a = new Card("a", "a", false);
-//		Card b = new Card("ab", "ab", false);
-//		Card c = new Card("ac", "ac", true);
-//		Card d = new Card("ad", "ad", false);
-//		Card l = new Card("ae", "ae", true);
-//		Card f = new Card("af", "af", false);
-//		Card g = new Card("ag", "ag", false);
-//
-//		List<Card> list = new ArrayList<>();
-//		list.add(a);
-//		list.add(b);
-//		list.add(c);
-//		list.add(d);
-//		list.add(l);
-//		list.add(f);
-//		list.add(g);
-		
 
-//		try {
-//			for (Card i : list) {
-//				commonOb.setCurrentCard(i);
-//				Pane pane = (Pane) FXMLLoader
-//						.load(getClass().getClassLoader().getResource("resources/view/IndexCardInfoTemplate.fxml"));
-//				indexCardDisplay.getChildren().add(pane);
-//			}
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+		updateCardPane();
+	}
 
+	private void updateCardPane() {
+		indexCardDisplay.getChildren().clear();
+		reviewPool = setPool(courseType);
+		for (Card c : reviewPool) {
+			cloneCard(indexCardDisplay, cardScrollDisplay, c);
+		}
+	}
+
+	private List<Card> setPool(CourseType courseType) {
+		List<Card> pool = new ArrayList<>();
+
+		switch (courseType) {
+		case ALL:
+			pool = currentCourse.getCards();
+			break;
+
+		case LEARNED:
+			for (Card c : currentCourse.getCards())
+				if (c.isLearned())
+					pool.add(c);
+			break;
+
+		case NOTLEARNED:
+			for (Card c : currentCourse.getCards())
+				if (!c.isLearned())
+					pool.add(c);
+			break;
+		}
+
+		return pool;
 	}
 
 	@FXML
@@ -121,11 +121,35 @@ public class CoursePageController implements Navigation,CloneCardInfo {
 
 	@FXML
 	public void reviewButtonPressed() {
+		if (reviewPool.size() <= 0) {
+			System.out.println("no cards to review, add cards");
+			return;
+		}
+		commonOb.setReviewCards(reviewPool);
 		createWindow("view/CardReview.fxml");
 	}
 
-	@FXML public void addCardPressed() {
+	@FXML
+	public void addCardPressed() {
 		popup("view/AddCardPrompt.fxml", topPane);
+	}
+
+	@FXML
+	public void allCardsSelected() {
+		courseType = CourseType.ALL;
+		updateCardPane();
+	}
+
+	@FXML
+	public void notLearnedSelected() {
+		courseType = CourseType.NOTLEARNED;
+		updateCardPane();
+	}
+
+	@FXML
+	public void learnedSelected() {
+		courseType = CourseType.LEARNED;
+		updateCardPane();
 	}
 
 }

@@ -39,7 +39,7 @@
                   </Label>
                   <ScrollPane fx:id="cardScrollDisplay" layoutX="105.0" layoutY="455.0" prefHeight="702.0" prefWidth="982.0" style="-fx-background-color: transparent;">
                      <content>
-                        <VBox fx:id="indexCardDisplay" prefHeight="700.0" prefWidth="960.0" spacing="25.0" style="-fx-background-color: silver; -fx-background-radius: 10px;" />
+                        <VBox fx:id="indexCardDisplay" prefHeight="200.0" prefWidth="960.0" spacing="25.0" style="-fx-background-color: silver; -fx-background-radius: 10px;" />
                      </content>
                   </ScrollPane>
                   <Pane layoutX="40.0" layoutY="30.0" onMouseClicked="#goBackClicked" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: transparent;">
@@ -58,9 +58,9 @@
                   <Button layoutX="105.0" layoutY="242.0" mnemonicParsing="false" onAction="#reviewButtonPressed" prefHeight="60.0" prefWidth="305.0" text="Start reviewing" />
                   <ToolBar fx:id="toolBar" layoutX="98.0" layoutY="408.0" prefHeight="47.0" prefWidth="429.0" style="-fx-background-color: transparent;">
                      <items>
-                        <Button accessibleText="All Index Cards" mnemonicParsing="false" text="All Index Cards" />
-                        <Button accessibleText="Not Learned Cards" mnemonicParsing="false" text="Not Learned Cards" />
-                        <Button accessibleText="Learned Cards" mnemonicParsing="false" text="Learned Cards" />
+                        <Button accessibleText="All Index Cards" mnemonicParsing="false" onAction="#allCardsSelected" text="All Index Cards" />
+                        <Button accessibleText="Not Learned Cards" mnemonicParsing="false" onAction="#notLearnedSelected" text="Not Learned Cards" />
+                        <Button accessibleText="Learned Cards" mnemonicParsing="false" onAction="#learnedSelected" text="Learned Cards" />
                      </items>
                   </ToolBar>
                   <TextFlow layoutX="105.0" layoutY="306.0" prefHeight="25.0" prefWidth="306.0">
