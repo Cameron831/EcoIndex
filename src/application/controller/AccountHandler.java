@@ -14,13 +14,13 @@ public class AccountHandler {
 	private User user;
 
 	private String encrypt(String toEncrypt) {
-//		return passUtil.encrypt(toEncrypt);
-		return toEncrypt;
+		return passUtil.encrypt(toEncrypt);
+//		return toEncrypt;
 	}
 
 	private String decrypt(String toDecrypt) {
-//		return passUtil.decrypt(toDecrypt);
-		return toDecrypt;
+		return passUtil.decrypt(toDecrypt);
+//		return toDecrypt;
 	}
 
 	public String getEncrypt(String toEncrypt) {

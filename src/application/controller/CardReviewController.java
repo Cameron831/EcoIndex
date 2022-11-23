@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -80,33 +79,10 @@ public class CardReviewController {
 	@FXML
 	Label totalDisplay;
 
-	public void initialize() {
-//		Card a = new Card("a", "a", false);
-//		Card b = new Card("ab", "ab", false);
-//		Card c = new Card("ac", "ac", true);
-//		Card d = new Card("ad", "ad", false);
-//		Card l = new Card("ae", "ae", true);
-//		Card f = new Card("af", "af", false);
-//		Card g = new Card("ag", "ag", false);
-//
-//		List<Card> list = new ArrayList<>();
-//		list.add(a);
-//		list.add(b);
-//		list.add(c);
-//		list.add(d);
-//		list.add(l);
-//		list.add(f);
-//		list.add(g);
-//
-//		for (Card m : list)
-//			if (m.isLearned())
-//				learnedTotal++;
-//
-//		pool = list;
-		
-//		for (Card m : pool)
-//			if (m.isLearned())
-//				learnedTotal++;
+	public void initialize() {		
+		for (Card m : pool)
+			if (m.isLearned())
+				learnedTotal++;
 		
 		Collections.shuffle(pool);
 		currentCard = pool.get(currentIndex);
