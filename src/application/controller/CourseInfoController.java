@@ -55,6 +55,6 @@ public class CourseInfoController implements CloneCourseInfo, Navigation {
 	public void deleteCoursePressed() {
 		removeClone(commonOb.getCourseDisplayPane(), container, commonOb.getScrollDisplayCoursePane());
 		if (commonOb.getCurrentUser() != null)
-			commonOb.getCurrentUser().removeCourse(currentCourse);
+			commonOb.getCurrentUser().deleteCourse(currentCourse);
 	}
 }

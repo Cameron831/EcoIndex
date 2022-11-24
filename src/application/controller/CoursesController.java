@@ -44,4 +44,12 @@ public class CoursesController implements CloneCourseInfo, Navigation {
 		commonOb.getRootStage().setTitle("EcoIndex");
 		goToPage("view/Welcome.fxml");
 	}
+
+	@FXML public void goToSettings() {
+		if (currentUser == null) {
+			System.out.println("login to change settings");
+			return;
+		}
+		goToPage("view/Settings.fxml");
+	}
 }

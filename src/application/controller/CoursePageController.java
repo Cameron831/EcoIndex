@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
 
 public class CoursePageController implements Navigation, CloneCardInfo {
 
@@ -46,6 +47,7 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 	}
 
 	private CourseType courseType = CourseType.ALL;
+	@FXML StackPane warningPane;
 
 	public void initialize() {
 		commonOb.setIndexCardDisplayPane(indexCardDisplay);
@@ -125,8 +127,9 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 			System.out.println("no cards to review, add cards");
 			return;
 		}
-		commonOb.setReviewCards(reviewPool);
+		commonOb.setReviewCards(new ArrayList<>(reviewPool));
 		createWindow("view/CardReview.fxml");
+		warningPane.setVisible(true);
 	}
 
 	@FXML
@@ -150,6 +153,10 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 	public void learnedSelected() {
 		courseType = CourseType.LEARNED;
 		updateCardPane();
+	}
+
+	@FXML public void refresh() {
+		goToPage("view/CoursePageTemplate.fxml");
 	}
 
 }

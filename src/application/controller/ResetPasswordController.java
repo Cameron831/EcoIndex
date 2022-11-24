@@ -32,8 +32,8 @@ public class ResetPasswordController implements Navigation {
 
 	@FXML
 	public void changePasswordPressed() {
-		AccountHandler ah = new AccountHandler();
-		if (ah.verifyQuestionStatus(tempUser, attemptAnswer, newPasswordField)) {
+		VerificationHandler vh = new VerificationHandler();
+		if (vh.verifyQuestionStatus(tempUser, attemptAnswer, newPasswordField)) {
 			// verified tempUser, setting as the current user
 			commonOb.setCurrentUser(tempUser);
 			commonOb.setTempUser(null);

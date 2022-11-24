@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polyline?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SettingsController">
+   <children>
+      <Label layoutX="525.0" layoutY="105.0" text="Settings">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+      <VBox layoutX="426.0" layoutY="197.0" prefHeight="441.0" prefWidth="349.0" spacing="20.0">
+         <children>
+            <Pane prefHeight="78.0" prefWidth="336.0">
+               <children>
+                  <Label text="Current Username" />
+                  <TextField fx:id="usernameField" layoutY="28.0" prefHeight="48.0" prefWidth="336.0" promptText="Current Username" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </Pane>
+            <Pane prefHeight="78.0" prefWidth="336.0">
+               <children>
+                  <Label text="Set New Password" />
+                  <PasswordField fx:id="passwordField" layoutY="28.0" prefHeight="48.0" prefWidth="336.0" promptText="New Password" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+                     <padding>
+                        <Insets left="5.0" right="125.0" />
+                     </padding>
+                  </PasswordField>
+               </children>
+            </Pane>
+            <Pane prefHeight="62.0" prefWidth="336.0">
+               <children>
+                  <Label text="Current Security Question" />
+                  <MenuButton fx:id="securityQuestionSelect" layoutY="28.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="336.0" text="Select Security Question">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="What's the name of your first pet?" />
+                      <MenuItem mnemonicParsing="false" text="What is the name of your favorite pet?" />
+                        <MenuItem mnemonicParsing="false" text="What was your favorite food as a child?" />
+                        <MenuItem mnemonicParsing="false" text="What was the make of your first car?" />
+                        <MenuItem mnemonicParsing="false" text="..." />
+                    </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </MenuButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="78.0" prefWidth="336.0">
+               <children>
+                  <Label text="Set New Answer" />
+                  <TextField fx:id="securityAnswerField" layoutY="28.0" prefHeight="48.0" prefWidth="336.0" promptText="New Answer" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </Pane>
+            <Button mnemonicParsing="false" onAction="#saveChangesPressed" prefHeight="48.0" prefWidth="336.0" style="-fx-background-color: royalblue;" text="Save Changes" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteUser" prefHeight="48.0" prefWidth="336.0" style="-fx-background-color: #d9534f;" text="Delete User" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="50.0" layoutY="40.0" onMouseClicked="#goBackClicked" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: transparent;">
+         <children>
+            <Polyline fill="#5e5e5e" layoutX="11.0" points="-50.0, -40.0, 50.0, -40.0, 0.0, 60.0, -50.0, -40.0" rotate="90.0" scaleX="0.1" scaleY="0.1" strokeType="INSIDE" />
+            <Label layoutX="20.0" layoutY="-3.0" text="Go back to course list" textFill="#009dff">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+   </children>
+</AnchorPane>

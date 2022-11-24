@@ -67,14 +67,14 @@ public class User {
 	}
 
 	// remove a specific course
-	public void removeCourse(Course course) {
+	public void deleteCourse(Course course) {
 		// search for specific course, then remove it once found
 //		int counter = 0;
 //		while (!courses.get(counter).equals(courseName))
 //			counter++;
 //		courses.remove(counter);
 		courses.remove(course);
-		updateDB();
+		course.deleteCourse();
 	}
 
 	public Course searchCourse(Course course) {
@@ -109,9 +109,20 @@ public class User {
 		courses = db.getAllCoursesFromUser(this);
 	}
 
-	// update the database
-	public void updateDB() {
-//		CourseSQL db = CourseSQL.getSingle();
-//		db.overwriteDB(this);
+	public void deleteUser() {
+		for (Course c : courses)
+			c.deleteCourse();
+		
+		UserSQL db = UserSQL.getSingle();
+		db.deleteUser(this);
+		
+	}
+
+	public void updateUser(String un, String pw, String sq, String sqA) {
+		this.username = un;
+		this.password = pw;
+		this.securityQuestion = sq;
+		this.securityQuestionAnswer = sqA;
+		UserSQL.getSingle().updateUser(this);
 	}
 }

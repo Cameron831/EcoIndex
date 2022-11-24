@@ -32,7 +32,10 @@ public class EditCardPromptController implements Navigation {
 	public void saveChangesPressed() {
 		cardToEdit.setQuestion(questionField.getText());
 		cardToEdit.setAnswer(answerField.getText());
-		cardToEdit.setLearned(learnedCheckbox.isSelected());
+		if (cardToEdit.setLearned(learnedCheckbox.isSelected())) {
+			commonOb.getOpenedCourse().updateLearnedSingle(cardToEdit.isLearned());
+			commonOb.getOpenedCourse().updateCourse();
+		}
 		
 		cardToEdit.updateCard();
 

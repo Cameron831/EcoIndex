@@ -29,7 +29,7 @@ public class UserSQL implements DBHandler {
 			return false;
 		}
 	}
-	
+
 	public void closeConnection() {
 		try {
 			connection.close();
@@ -89,7 +89,8 @@ public class UserSQL implements DBHandler {
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, un);
 		ResultSet test = preparedStatement.executeQuery();
-		if (!test.next()) throw new SQLException("user not found");
+		if (!test.next())
+			throw new SQLException("user not found");
 		return test;
 	}
 
@@ -130,8 +131,40 @@ public class UserSQL implements DBHandler {
 		preparedStatement.setString(4, sqA);
 		if (preparedStatement.executeUpdate() <= 0)
 			throw new SQLException("could not add user to database");
-		
+
 		ResultSet justInserted = preparedStatement.getGeneratedKeys();
 		return new User(un, pw, sq, sqA, justInserted.getInt(1));
+	}
+
+	public void deleteUser(User u) {
+		try {
+			PreparedStatement preparedStatement;
+			String query = "DELETE FROM tbUsers WHERE ID = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, u.getID());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void updateUser(User u) {
+		try {
+			PreparedStatement preparedStatement;
+			String query = "UPDATE tbUsers SET userName = ?, passwd = ?, securityQuestion = ?, securityQuestionAnswer = ? WHERE ID = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, u.getUsername());
+			preparedStatement.setString(2, u.getPassword());
+			preparedStatement.setString(3, u.getSecurityQuestion());
+			preparedStatement.setString(4, u.getSecurityQuestionAnswer());
+			preparedStatement.setInt(5, u.getID());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

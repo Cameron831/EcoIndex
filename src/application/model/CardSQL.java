@@ -89,4 +89,18 @@ public class CardSQL implements DBHandler {
 			e.printStackTrace();
 		}
 	}
+
+	public void deleteCard(Card card) {
+		try {
+			PreparedStatement preparedStatement;
+			String query = "DELETE FROM tbCards WHERE ID = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, card.getID());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

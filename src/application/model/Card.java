@@ -46,9 +46,17 @@ public class Card {
 		return learned;
 	}
 
-	public void setLearned(boolean learned) {
+	public boolean setLearned(boolean learned) {
+		boolean change = !(learned && this.learned);
 		this.learned = learned;
+		return change;
 	}
+	
+//	public static void main(String[] args) {
+//		Card c = new Card("a","b", false);
+//		System.out.println(c.setLearned(false));
+//		System.out.println(c.isLearned());
+//	}
 
 	public Card addCard(Course course) {
 		CardSQL db = CardSQL.getSingle();
@@ -58,5 +66,10 @@ public class Card {
 	public void updateCard() {
 		CardSQL db = CardSQL.getSingle();
 		db.updateCard(this);
+	}
+
+	public void deleteCard() {
+		CardSQL db = CardSQL.getSingle();
+		db.deleteCard(this);
 	}
 }

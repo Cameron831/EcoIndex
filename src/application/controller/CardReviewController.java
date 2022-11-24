@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import application.model.Card;
+import application.model.Course;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
@@ -60,6 +61,8 @@ public class CardReviewController {
 	private Card currentCard;
 
 	private int learnedTotal = 0;
+	
+	private Course course;
 
 	@FXML
 	CheckBox learnedCheckbox;
@@ -79,7 +82,9 @@ public class CardReviewController {
 	@FXML
 	Label totalDisplay;
 
-	public void initialize() {		
+	public void initialize() {	
+		course = CommonObjs.getSingle().getOpenedCourse();
+		
 		for (Card m : pool)
 			if (m.isLearned())
 				learnedTotal++;
@@ -180,6 +185,9 @@ public class CardReviewController {
 	public void learnedToggled() {
 		learnedTotal += currentCard.isLearned() ? -1 : 1;
 		currentCard.setLearned(learnedCheckbox.isSelected());
+		currentCard.updateCard();
+		course.updateLearnedSingle(currentCard.isLearned());
+		course.updateCourse();
 		updateLearned();
 	}
 }

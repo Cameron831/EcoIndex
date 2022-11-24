@@ -36,7 +36,12 @@ public class IndexCardTemplateController implements Navigation, CloneCardInfo {
 	}
 
 	@FXML public void toggleLearned() {
-		currentCard.setLearned(learnedCheckbox.isSelected());
+//		commonOb.getOpenedCourse().
+		if (currentCard.setLearned(learnedCheckbox.isSelected())) {
+			commonOb.getOpenedCourse().updateLearnedSingle(currentCard.isLearned());
+			commonOb.getOpenedCourse().updateCourse();
+		}
+		currentCard.updateCard();
 	}
 
 	@FXML public void editCard() {
@@ -47,6 +52,7 @@ public class IndexCardTemplateController implements Navigation, CloneCardInfo {
 
 	@FXML
 	public void deleteCard() {
+		commonOb.getOpenedCourse().deleteCard(currentCard);
 		removeClone(commonOb.getIndexCardDisplayPane(), cardPane, commonOb.getCardScrollDisplayPane());
 	}
 }

@@ -7,7 +7,7 @@ public class Course {
 	private String name;
 	private String description;
 	private int numCards;
-	private int learnedTotal = 0;
+	private int learnedTotal;
 	private List<Card> cards = new ArrayList<>();
 
 	public List<Card> getCards() {
@@ -25,19 +25,11 @@ public class Course {
 		this.ID = -1;
 	}
 
-	// retrieving old courses saved from database
-	public Course(String name, String description, String numCards, int ID) {
-		this.name = name;
-		this.description = description;
-		this.numCards = Integer.parseInt(numCards);
-		this.ID = ID;
-		// TODO need to add learned
-	}
-
-	public Course(String name, String description, int numCards, int ID) {
+	public Course(String name, String description, int numCards, int learnedTotal, int ID) {
 		this.name = name;
 		this.description = description;
 		this.numCards = numCards;
+		this.learnedTotal = learnedTotal;
 		this.ID = ID;
 		// TODO need to add learned
 	}
@@ -60,7 +52,7 @@ public class Course {
 	}
 
 	public int getNumCards() {
-		return numCards;
+		return cards.size();
 	}
 
 	public void setNumCards(int numCards) {
@@ -73,6 +65,14 @@ public class Course {
 
 	public void setLearnedTotal(int learnedTotal) {
 		this.learnedTotal = learnedTotal;
+	}
+
+	public void incrementLearnedTotal() {
+		this.learnedTotal++;
+	}
+
+	public void updateLearnedSingle(boolean b) {
+		learnedTotal += b ? 1 : -1;
 	}
 
 	public String getName() {
@@ -96,18 +96,39 @@ public class Course {
 	public Card addCard(Card tempCard) {
 		Card newCard = tempCard.addCard(this);
 		cards.add(newCard);
-		numCards++;
+		
+		if (tempCard.isLearned())
+			learnedTotal++;
+		
+//		numCards++;
 		return newCard;
 	}
 
 	public void initializeCards() {
 		CardSQL db = CardSQL.getSingle();
 		cards = db.getAllCardsFromCourse(this);
+
 //		numCards = cards.size();
 //		for (Card i : cards)
 //			if (i.isLearned())
 //				learnedTotal++;
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	public void deleteCard(Card card) {
+		cards.remove(card);
+		if (card.isLearned())
+			learnedTotal--;
+		card.deleteCard();
+	}
+
+	public void deleteCourse() {
+		// TODO Auto-generated method stub
+		for (Card c : cards)
+			c.deleteCard();
+
+		CourseSQL db = CourseSQL.getSingle();
+		db.deleteCourse(this);
 	}
 }
