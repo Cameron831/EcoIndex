@@ -24,9 +24,13 @@ public class SettingsController implements Navigation {
 
 	private User currentUser = commonOb.getCurrentUser();
 	@FXML AnchorPane topPane;
+	
+	private AccountHandler ah = new AccountHandler(currentUser);
 
 	public void initialize() {
 		usernameField.setText(currentUser.getUsername());
+		passwordField.setText(ah.retrievePassword());
+		securityAnswerField.setText(ah.retrieveAnswer());
 
 		ObservableList<MenuItem> questions = securityQuestionSelect.getItems();
 		for (MenuItem q : questions) {
@@ -44,7 +48,6 @@ public class SettingsController implements Navigation {
 
 	@FXML
 	public void saveChangesPressed() {
-		AccountHandler ah = new AccountHandler();
 		ah.modifyAccount(currentUser, usernameField.getText(), passwordField,selected.getText(),securityAnswerField);
 		System.out.println("Successfully changed settings");
 		new Alert("Successfully changed settings", topPane, "#14A44D");

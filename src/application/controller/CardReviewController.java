@@ -88,8 +88,7 @@ public class CardReviewController {
 	public void initialize() {
 		course = CommonObjs.getSingle().getOpenedCourse();
 
-		// todo: may change to directly pull learned total from value stored in course,
-		// but need to handle non-learned
+		// todo: may change to directly pull learned total from value stored in course
 		for (Card m : pool)
 			if (m.isLearned())
 				learnedTotal++;
@@ -190,7 +189,7 @@ public class CardReviewController {
 	}
 
 	// update learned count stored in course and database	
-	// todo: maybe postpone to a window event listener
+	// todo?: maybe postpone update database to a window event listener on close or hidden
 	@FXML
 	public void learnedToggled() {		
 		learnedTotal += currentCard.isLearned() ? -1 : 1;

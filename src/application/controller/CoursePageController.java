@@ -78,8 +78,6 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 
 	private List<Card> setPool(CourseType courseType) {
 		List<Card> pool = new ArrayList<>();
-		
-		// todo: maybe add learned total to be checked here
 
 		switch (courseType) {
 		case ALL:
@@ -118,7 +116,6 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 			newWindow.setX(newWindow.getX() + 30);
 			newWindow.setY(newWindow.getY() + 35);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -129,7 +126,7 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 			new Alert("No available cards to review", topPane);
 			return;
 		}
-		
+
 		// pass a cloned copy to be randomized during review
 		commonOb.setReviewCards(new ArrayList<>(reviewPool));
 		createWindow("view/CardReview.fxml");

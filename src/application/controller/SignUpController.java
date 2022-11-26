@@ -44,7 +44,7 @@ public class SignUpController implements Navigation {
 	public void signUpButtonPressed() {
 		// require user to pick security question
 		if (selected == null) {
-			new Alert("Please pick a security question", topPane);
+			new Alert("Please complete all fields", topPane);
 			return;
 		}
 
@@ -58,6 +58,6 @@ public class SignUpController implements Navigation {
 			goToPage("view/Courses.fxml");
 		}
 		else
-			new Alert("Unable to create new user. Ensure all fields are filled", topPane);
+			new Alert("Unable to create new unique user", topPane);
 	}
 }

@@ -16,12 +16,12 @@
 
 <AnchorPane fx:id="topPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SettingsController">
    <children>
-      <Label layoutX="525.0" layoutY="105.0" text="Settings">
+      <Label layoutX="525.0" layoutY="74.0" text="Settings">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <VBox layoutX="426.0" layoutY="197.0" prefHeight="441.0" prefWidth="349.0" spacing="20.0">
+      <VBox layoutX="426.0" layoutY="176.0" prefHeight="557.0" prefWidth="349.0" spacing="20.0">
          <children>
             <Pane prefHeight="78.0" prefWidth="336.0">
                <children>
@@ -35,7 +35,7 @@
             </Pane>
             <Pane prefHeight="78.0" prefWidth="336.0">
                <children>
-                  <Label text="Set New Password" />
+                  <Label text="Set Password" />
                   <PasswordField fx:id="passwordField" layoutY="28.0" prefHeight="48.0" prefWidth="336.0" promptText="New Password" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
                      <padding>
                         <Insets left="5.0" right="125.0" />
@@ -62,7 +62,7 @@
             </Pane>
             <Pane prefHeight="78.0" prefWidth="336.0">
                <children>
-                  <Label text="Set New Answer" />
+                  <Label text="Set Answer" />
                   <TextField fx:id="securityAnswerField" layoutY="28.0" prefHeight="48.0" prefWidth="336.0" promptText="New Answer" style="-fx-border-width: 2px; -fx-border-color: silver; -fx-border-radius: 4px;">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
