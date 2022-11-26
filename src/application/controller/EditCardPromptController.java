@@ -30,8 +30,11 @@ public class EditCardPromptController implements Navigation {
 
 	@FXML
 	public void saveChangesPressed() {
+		// update info in card object
 		cardToEdit.setQuestion(questionField.getText());
 		cardToEdit.setAnswer(answerField.getText());
+		
+		// update learned count
 		if (cardToEdit.setLearned(learnedCheckbox.isSelected())) {
 			commonOb.getOpenedCourse().updateLearnedSingle(cardToEdit.isLearned());
 			commonOb.getOpenedCourse().updateCourse();
@@ -39,6 +42,7 @@ public class EditCardPromptController implements Navigation {
 		
 		cardToEdit.updateCard();
 
+		// update index card display
 		cardDisplay.renameCardQuestion(questionField.getText());
 		cardDisplay.renameCardAnswer(answerField.getText());
 		cardDisplay.setCheckboxState(learnedCheckbox.isSelected());

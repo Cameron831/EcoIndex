@@ -71,7 +71,7 @@
                      </children>
                   </TextFlow>
                   <Button layoutX="225.0" layoutY="357.0" mnemonicParsing="false" onAction="#addCardPressed" text="Add new index card" />
-                  <StackPane fx:id="warningPane" layoutX="216.0" layoutY="30.0" opacity="0.8" prefHeight="81.0" prefWidth="748.0" style="-fx-background-color: orange; -fx-background-radius: 10px;" visible="false">
+                  <StackPane fx:id="warningPane" layoutX="216.0" layoutY="30.0" opacity="0.8" prefHeight="81.0" prefWidth="748.0" style="-fx-background-color: orange; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: black;" visible="false">
                      <children>
                         <TextFlow prefHeight="29.0" prefWidth="551.0" textAlignment="CENTER" StackPane.alignment="CENTER">
                            <children>

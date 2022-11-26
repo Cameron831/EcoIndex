@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="warningPane" opacity="0.8" prefHeight="80.0" prefWidth="668.0" stylesheets="@../css/alert.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.Alert">
+   <children>
+      <Label fx:id="alertLabel" prefHeight="80.0" prefWidth="750.0" style="-fx-background-color: transparent;" text="alert" textFill="#f8f8f8">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets left="40.0" right="40.0" />
+         </padding>
+      </Label>
+   </children>
+</StackPane>

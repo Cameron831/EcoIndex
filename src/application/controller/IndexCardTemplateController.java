@@ -8,26 +8,29 @@ import javafx.scene.layout.AnchorPane;
 
 public class IndexCardTemplateController implements Navigation, CloneCardInfo {
 
-	@FXML Label questionLabel;
-	@FXML Label answerLabel;
-	
+	@FXML
+	Label questionLabel;
+	@FXML
+	Label answerLabel;
+
 	private Card currentCard;
-	@FXML CheckBox learnedCheckbox;
-	@FXML AnchorPane cardPane;
-	
-	
+	@FXML
+	CheckBox learnedCheckbox;
+	@FXML
+	AnchorPane cardPane;
+
 	void renameCardQuestion(String newName) {
 		questionLabel.setText(newName);
 	}
-	
+
 	void renameCardAnswer(String newName) {
 		answerLabel.setText(newName);
 	}
-	
+
 	void setCheckboxState(boolean b) {
 		learnedCheckbox.setSelected(b);
 	}
-	
+
 	public void initialize() {
 		currentCard = commonOb.getCurrentCard();
 		questionLabel.setText(currentCard.getQuestion());
@@ -35,8 +38,9 @@ public class IndexCardTemplateController implements Navigation, CloneCardInfo {
 		learnedCheckbox.setSelected(currentCard.isLearned());
 	}
 
-	@FXML public void toggleLearned() {
-//		commonOb.getOpenedCourse().
+	@FXML
+	public void toggleLearned() {
+		// update learned count
 		if (currentCard.setLearned(learnedCheckbox.isSelected())) {
 			commonOb.getOpenedCourse().updateLearnedSingle(currentCard.isLearned());
 			commonOb.getOpenedCourse().updateCourse();
@@ -44,14 +48,16 @@ public class IndexCardTemplateController implements Navigation, CloneCardInfo {
 		currentCard.updateCard();
 	}
 
-	@FXML public void editCard() {
+	@FXML
+	public void editCard() {
 		commonOb.setCurrentCard(currentCard);
 		commonOb.setCurrentCardEdit(this);
-		popup("view/EditCardPrompt.fxml",commonOb.getTopCoursePagePane());
+		popup("view/EditCardPrompt.fxml", commonOb.getTopCoursePagePane());
 	}
 
 	@FXML
 	public void deleteCard() {
+		// delete from view and update database
 		commonOb.getOpenedCourse().deleteCard(currentCard);
 		removeClone(commonOb.getIndexCardDisplayPane(), cardPane, commonOb.getCardScrollDisplayPane());
 	}

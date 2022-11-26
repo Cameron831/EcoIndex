@@ -6,15 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserSQL implements DBHandler {
-//	private Connection connection;
-
 	// singleton essentials
 	private static UserSQL singleInstance = new UserSQL();
 
 	private UserSQL() {
-//		connection = SqliteConnection.Connector();
-//		if (connection == null)
-//			System.exit(1);
 	};
 
 	public static UserSQL getSingle() {
@@ -27,16 +22,6 @@ public class UserSQL implements DBHandler {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
-	}
-
-	public void closeConnection() {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("broke");
 		}
 	}
 
@@ -124,7 +109,8 @@ public class UserSQL implements DBHandler {
 	private User writeNewUser(String un, String pw, String sq, String sqA) throws SQLException {
 		PreparedStatement preparedStatement;
 		String query = "INSERT INTO tbUsers(userName,passwd,securityQuestion,securityQuestionAnswer) VALUES(?,?,?,?)";
-		preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); // return autoincrement
+																									// value
 		preparedStatement.setString(1, un);
 		preparedStatement.setString(2, pw);
 		preparedStatement.setString(3, sq);
@@ -143,9 +129,7 @@ public class UserSQL implements DBHandler {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, u.getID());
 			preparedStatement.executeUpdate();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -161,9 +145,7 @@ public class UserSQL implements DBHandler {
 			preparedStatement.setString(4, u.getSecurityQuestionAnswer());
 			preparedStatement.setInt(5, u.getID());
 			preparedStatement.executeUpdate();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

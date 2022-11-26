@@ -7,6 +7,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class SignUpController implements Navigation {
 
@@ -20,6 +21,7 @@ public class SignUpController implements Navigation {
 	TextField securityAnswerField;
 
 	private MenuItem selected;
+	@FXML AnchorPane topPane;
 
 	public void initialize() {
 
@@ -42,7 +44,7 @@ public class SignUpController implements Navigation {
 	public void signUpButtonPressed() {
 		// require user to pick security question
 		if (selected == null) {
-			System.out.println("pick a security question");
+			new Alert("Please pick a security question", topPane);
 			return;
 		}
 
@@ -54,6 +56,8 @@ public class SignUpController implements Navigation {
 		if (testCreate != null) {
 			commonOb.setCurrentUser(testCreate);
 			goToPage("view/Courses.fxml");
-		} 
+		}
+		else
+			new Alert("Unable to create new user. Ensure all fields are filled", topPane);
 	}
 }

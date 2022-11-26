@@ -7,6 +7,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class SettingsController implements Navigation {
 
@@ -22,6 +23,7 @@ public class SettingsController implements Navigation {
 	private MenuItem selected;
 
 	private User currentUser = commonOb.getCurrentUser();
+	@FXML AnchorPane topPane;
 
 	public void initialize() {
 		usernameField.setText(currentUser.getUsername());
@@ -33,6 +35,7 @@ public class SettingsController implements Navigation {
 				selected = q;
 			});
 			
+			// find current selection for user and show it
 			if (q.getText().equals(currentUser.getSecurityQuestion()))
 				q.fire();
 		}
@@ -43,7 +46,8 @@ public class SettingsController implements Navigation {
 	public void saveChangesPressed() {
 		AccountHandler ah = new AccountHandler();
 		ah.modifyAccount(currentUser, usernameField.getText(), passwordField,selected.getText(),securityAnswerField);
-		System.out.println("successfully changed settings");
+		System.out.println("Successfully changed settings");
+		new Alert("Successfully changed settings", topPane, "#14A44D");
 	}
 
 	@FXML
@@ -54,8 +58,8 @@ public class SettingsController implements Navigation {
 	@FXML
 	public void deleteUser() {
 		currentUser.deleteUser();
-		goToPage("view/Welcome.fxml");
 		commonOb.setCurrentUser(null);
+		goToPage("view/Welcome.fxml");
 	}
 
 }

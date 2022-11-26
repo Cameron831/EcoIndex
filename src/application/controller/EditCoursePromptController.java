@@ -7,7 +7,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 
-//todo add description to be changable
 public class EditCoursePromptController implements Navigation {
 
 	@FXML
@@ -33,13 +32,18 @@ public class EditCoursePromptController implements Navigation {
 
 	@FXML
 	public void saveChangesPressed() {
+		// update course object
 		currentCourse.setName(newNameField.getText());
 		currentCourse.setDescription(newDescriptionField.getText());
 
-		oldCourseNameLabel.setText(newNameField.getText());
+		// save to database
+		if (!currentCourse.updateCourse()) {
+			new Alert("Unable to save changes", commonOb.getTopCoursePane());
+			return;
+		}
 
-//		if (commonOb.getCurrentUser() != null)
-			currentCourse.updateCourse();
+		// update course display view
+		oldCourseNameLabel.setText(newNameField.getText());
 
 		exitPrompt();
 

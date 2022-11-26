@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class ResetPasswordController implements Navigation {
 
@@ -19,6 +20,7 @@ public class ResetPasswordController implements Navigation {
 
 	// user to fetch security question from
 	private User tempUser = commonOb.getTempUser();
+	@FXML AnchorPane topPane;
 
 	public void initialize() {
 		usernameDisplay.setText("User: " + tempUser.getUsername());
@@ -40,6 +42,6 @@ public class ResetPasswordController implements Navigation {
 			goToPage("view/Login.fxml");
 		} 
 		else
-			System.out.println("answer incorrect");
+			new Alert("Could not reset password. Answer incorrect", topPane);
 	}
 }

@@ -8,15 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseSQL implements DBHandler {
-//	private Connection connection;
-
 	// singleton essentials
 	private static CourseSQL singleInstance = new CourseSQL();
 
 	private CourseSQL() {
-//		connection = SqliteConnection.Connector();
-//		if (connection == null)
-//			System.exit(1);
 	};
 
 	public static CourseSQL getSingle() {
@@ -46,7 +41,6 @@ public class CourseSQL implements DBHandler {
 						courseInfo.getInt("cardNums"), courseInfo.getInt("learnedNums"), courseInfo.getInt("ID")));
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return courses;
@@ -67,18 +61,15 @@ public class CourseSQL implements DBHandler {
 			return new Course(c.getName(), c.getDescription(), c.getNumCards(), c.getLearnedTotal(),
 					preparedStatement.getGeneratedKeys().getInt(1));
 
-//			return preparedStatement.getGeneratedKeys().getInt(1);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 //			System.out.println("name not unique");
 			return null;
 		}
 
 	}
 
-	// TODO need to be able to edit course
-	public void updateCourse(Course c) {
+	public boolean updateCourse(Course c) {
 		try {
 			PreparedStatement preparedStatement;
 			String query = "UPDATE tbCourses SET courseName = ?, courseDescription = ?, cardNums = ?, learnedNums = ? WHERE ID = ?";
@@ -89,16 +80,15 @@ public class CourseSQL implements DBHandler {
 			preparedStatement.setInt(4, c.getLearnedTotal());
 			preparedStatement.setInt(5, c.getID());
 			preparedStatement.executeUpdate();
+			return true;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
 
 	}
 
 	public void deleteCourse(Course c) {
-		// TODO Auto-generated method stub
 		try {
 			PreparedStatement preparedStatement;
 			String query = "DELETE FROM tbCourses WHERE ID = ?";
@@ -107,11 +97,8 @@ public class CourseSQL implements DBHandler {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-
-	// TODO need to add how to delete course
 }

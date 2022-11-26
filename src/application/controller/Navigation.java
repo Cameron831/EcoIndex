@@ -41,7 +41,7 @@ public interface Navigation {
 		}
 	}
 	
-	// remove method (mostly used to remove popups)
+	// remove a child method
 	default void remove(Pane container, Pane toRemove) {
 		container.getChildren().remove(toRemove);
 	}

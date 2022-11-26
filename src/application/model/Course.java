@@ -10,13 +10,9 @@ public class Course {
 	private int learnedTotal;
 	private List<Card> cards = new ArrayList<>();
 
-	public List<Card> getCards() {
-		return cards;
-	}
-
 	private int ID;
 
-	// creating a brand new course with no cards
+	// package new course information
 	public Course(String name, String desc) {
 		this.name = name;
 		this.description = desc;
@@ -31,7 +27,10 @@ public class Course {
 		this.numCards = numCards;
 		this.learnedTotal = learnedTotal;
 		this.ID = ID;
-		// TODO need to add learned
+	}
+
+	public List<Card> getCards() {
+		return cards;
 	}
 
 	int getID() {
@@ -67,10 +66,6 @@ public class Course {
 		this.learnedTotal = learnedTotal;
 	}
 
-	public void incrementLearnedTotal() {
-		this.learnedTotal++;
-	}
-
 	public void updateLearnedSingle(boolean b) {
 		learnedTotal += b ? 1 : -1;
 	}
@@ -83,9 +78,9 @@ public class Course {
 		this.name = name;
 	}
 
-	public void updateCourse() {
+	public boolean updateCourse() {
 		CourseSQL courseDB = CourseSQL.getSingle();
-		courseDB.updateCourse(this);
+		return courseDB.updateCourse(this);
 	}
 
 	public Course addCourse(User u) {
@@ -96,24 +91,16 @@ public class Course {
 	public Card addCard(Card tempCard) {
 		Card newCard = tempCard.addCard(this);
 		cards.add(newCard);
-		
+
 		if (tempCard.isLearned())
 			learnedTotal++;
-		
-//		numCards++;
+
 		return newCard;
 	}
 
 	public void initializeCards() {
 		CardSQL db = CardSQL.getSingle();
 		cards = db.getAllCardsFromCourse(this);
-
-//		numCards = cards.size();
-//		for (Card i : cards)
-//			if (i.isLearned())
-//				learnedTotal++;
-		// TODO Auto-generated method stub
-
 	}
 
 	public void deleteCard(Card card) {
@@ -124,7 +111,6 @@ public class Course {
 	}
 
 	public void deleteCourse() {
-		// TODO Auto-generated method stub
 		for (Card c : cards)
 			c.deleteCard();
 

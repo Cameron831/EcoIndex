@@ -8,16 +8,6 @@ public class User {
 	private List<Course> courses = new ArrayList<>();
 	private int ID;
 
-	// for database use if user has saved courses
-//	public User(String un, String pw, String sq, String sqA, String convertCourse) {
-//		this(un, pw, sq, sqA);
-//
-//		// initialize all courses saved on database
-//		for (String i : convertCourse.split(","))
-//			this.courses.add(new Course(i));
-//	}
-
-	// no saved courses
 	public User(String un, String pw, String sq, String sqA, int ID) {
 		this.username = un;
 		this.password = pw;
@@ -68,40 +58,18 @@ public class User {
 
 	// remove a specific course
 	public void deleteCourse(Course course) {
-		// search for specific course, then remove it once found
-//		int counter = 0;
-//		while (!courses.get(counter).equals(courseName))
-//			counter++;
-//		courses.remove(counter);
 		courses.remove(course);
 		course.deleteCourse();
-	}
-
-	public Course searchCourse(Course course) {
-		for (Course c : courses)
-			if (c.equals(course))
-				return c;
-		return null;
 	}
 
 	void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
-	// add a defined course
 	public Course addCourse(Course c) {
-//		CourseSQL db = CourseSQL.getSingle();
 		Course fin = c.addCourse(this);
-				
-//				db.addCourse(this, c);
 		courses.add(fin);
 		return fin;
-	}
-
-	// add a new course from a string
-	public Course addCourse(String c, String d) {
-		Course i = new Course(c, d);
-		return addCourse(i);
 	}
 
 	public void initializeCourses() {
@@ -112,10 +80,10 @@ public class User {
 	public void deleteUser() {
 		for (Course c : courses)
 			c.deleteCourse();
-		
+
 		UserSQL db = UserSQL.getSingle();
 		db.deleteUser(this);
-		
+
 	}
 
 	public void updateUser(String un, String pw, String sq, String sqA) {

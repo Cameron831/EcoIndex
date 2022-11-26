@@ -6,9 +6,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class VerificationHandler {
-	
+
 //	private PassUtil passUtil = new PassUtil();
-	
+
 	private CryptionHandler crypt = new CryptionHandler();
 
 	private UserSQL checkDatabase = UserSQL.getSingle();
@@ -16,12 +16,10 @@ public class VerificationHandler {
 
 	private String encrypt(String toEncrypt) {
 		return crypt.encrypt(toEncrypt);
-//		return toEncrypt;
 	}
 
 	private String decrypt(String toDecrypt) {
 		return crypt.decrypt(toDecrypt);
-//		return toDecrypt;
 	}
 
 	public String getEncrypt(String toEncrypt) {
@@ -46,8 +44,9 @@ public class VerificationHandler {
 
 	private boolean verification(PasswordField pw, String un) {
 		getUserDB(un);
-		if (user == null) return false;
-		
+		if (user == null)
+			return false;
+
 		String attemptPW = pw.getText();
 		return attemptPW.equals(decrypt(user.getPassword()));
 	}

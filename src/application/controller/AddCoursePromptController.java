@@ -18,19 +18,21 @@ public class AddCoursePromptController implements CloneCourseInfo, Navigation {
 
 	@FXML
 	public void confirmButtonPressed() {
-		addCourse(nameField.getText(), descriptionField.getText());
-		exitPrompt();
-	}
 
-	private void addCourse(String name, String desc) {
 		User u = commonOb.getCurrentUser();
-		Course toCreate = new Course(name, desc);
+		Course tempStore = new Course(nameField.getText(), descriptionField.getText());
 
+		// null check
 		// save course to database if logged in. show it locally without saving if not
-		cloneCourse(commonOb.getCourseDisplayPane(), commonOb.getScrollDisplayCoursePane(),
-				(u == null) ? toCreate : 
-//					toCreate.addCourse(u));
-					u.addCourse(toCreate));
+		Course toCreate = (u == null) ? tempStore : u.addCourse(tempStore);
+
+		if (toCreate == null) {
+			new Alert("Unable to add course", commonOb.getTopCoursePane());
+			return;
+		}
+
+		cloneCourse(commonOb.getCourseDisplayPane(), commonOb.getScrollDisplayCoursePane(), toCreate);
+		exitPrompt();
 	}
 
 	// rempve popup

@@ -47,23 +47,24 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 	}
 
 	private CourseType courseType = CourseType.ALL;
-	@FXML StackPane warningPane;
+	@FXML
+	StackPane warningPane;
 
 	public void initialize() {
+		// share containers
 		commonOb.setIndexCardDisplayPane(indexCardDisplay);
 		commonOb.setCardScrollDisplayPane(cardScrollDisplay);
 		commonOb.setTopCoursePagePane(topPane);
 
 		currentCourse = commonOb.getOpenedCourse();
 		courseTitle.setText("Course " + currentCourse.getName());
-		if (!currentCourse.getDescription().isEmpty())
+		if (!currentCourse.getDescription().isEmpty()) // otherwise shows the default "No description available"
 			courseDescription.setText(currentCourse.getDescription());
 
 		ObservableList<Node> buttons = toolBar.getItems();
+		// update view of what category is to be reviewed
 		for (Node q : buttons)
-			q.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
-				reviewSelection.setText(q.getAccessibleText());
-			});
+			q.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> reviewSelection.setText(q.getAccessibleText()));
 
 		updateCardPane();
 	}
@@ -71,13 +72,14 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 	private void updateCardPane() {
 		indexCardDisplay.getChildren().clear();
 		reviewPool = setPool(courseType);
-		for (Card c : reviewPool) {
+		for (Card c : reviewPool)
 			cloneCard(indexCardDisplay, cardScrollDisplay, c);
-		}
 	}
 
 	private List<Card> setPool(CourseType courseType) {
 		List<Card> pool = new ArrayList<>();
+		
+		// todo: maybe add learned total to be checked here
 
 		switch (courseType) {
 		case ALL:
@@ -124,9 +126,11 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 	@FXML
 	public void reviewButtonPressed() {
 		if (reviewPool.size() <= 0) {
-			System.out.println("no cards to review, add cards");
+			new Alert("No available cards to review", topPane);
 			return;
 		}
+		
+		// pass a cloned copy to be randomized during review
 		commonOb.setReviewCards(new ArrayList<>(reviewPool));
 		createWindow("view/CardReview.fxml");
 		warningPane.setVisible(true);
@@ -155,7 +159,8 @@ public class CoursePageController implements Navigation, CloneCardInfo {
 		updateCardPane();
 	}
 
-	@FXML public void refresh() {
+	@FXML
+	public void refresh() {
 		goToPage("view/CoursePageTemplate.fxml");
 	}
 

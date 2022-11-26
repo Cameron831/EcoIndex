@@ -47,7 +47,7 @@ public class CoursesController implements CloneCourseInfo, Navigation {
 
 	@FXML public void goToSettings() {
 		if (currentUser == null) {
-			System.out.println("login to change settings");
+			new Alert("Login to change settings", topPane);
 			return;
 		}
 		goToPage("view/Settings.fxml");

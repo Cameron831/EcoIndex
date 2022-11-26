@@ -22,7 +22,7 @@ public class CardSQL implements DBHandler {
 		try {
 			PreparedStatement preparedStatement;
 			String query = "INSERT INTO tbCards (courseID,cardQuestion,cardAnswer,learned) VALUES (?,?,?,?)";
-			preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS); // get value from autoincrement
 			preparedStatement.setInt(1, course.getID());
 			preparedStatement.setString(2, card.getQuestion());
 			preparedStatement.setString(3, card.getAnswer());
@@ -34,9 +34,7 @@ public class CardSQL implements DBHandler {
 					preparedStatement.getGeneratedKeys().getInt(1));
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("adding card broke");
 			return null;
 		}
 	}
@@ -60,14 +58,9 @@ public class CardSQL implements DBHandler {
 
 			while (cardInfo.next())
 				cards.add(new Card(cardInfo.getString("cardQuestion"), cardInfo.getString("cardAnswer"),
-						convertIntToBoolean(cardInfo.getInt("learned")), 
-						cardInfo.getInt("ID")
-						));
-//				courses.add(new Course(courseInfo.getString("courseName"), courseInfo.getString("courseDescription"),
-//						courseInfo.getString("cardNums"), courseInfo.getInt("ID")));
+						convertIntToBoolean(cardInfo.getInt("learned")), cardInfo.getInt("ID")));
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cards;
@@ -85,7 +78,6 @@ public class CardSQL implements DBHandler {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -99,7 +91,6 @@ public class CardSQL implements DBHandler {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -10,10 +10,6 @@ public class CourseInfoController implements CloneCourseInfo, Navigation {
 	// hold the info that we want to use for clone
 	private Course currentCourse;
 
-//	void setCurrentCourse(Course c) {
-//		currentCourse = c;
-//	}
-
 	@FXML
 	Label courseName;
 	@FXML
@@ -41,13 +37,9 @@ public class CourseInfoController implements CloneCourseInfo, Navigation {
 	// show popup to edit course
 	@FXML
 	public void editCoursePressed() {
-//		if (commonOb.getCurrentUser() != null) {
 		commonOb.setTemporaryCourse(currentCourse);
 		commonOb.setTemporaryCourseNameDisplay(courseName);
 		popup("view/EditCoursePrompt.fxml", commonOb.getTopCoursePane());
-//		} else { 
-//			System.out.println("please login");
-//		}
 	}
 
 	// remove the course in the view and update database

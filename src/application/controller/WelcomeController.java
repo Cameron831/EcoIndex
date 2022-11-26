@@ -13,7 +13,7 @@ public class WelcomeController implements Navigation {
 		goToPage("view/Signup.fxml");
 	}
 	
-	// the no login button. only provide limited functionality for app
+	// the no login/guest button. supposed to only provide limited functionality for app
 	@FXML
 	public void goToCourses() {
 		goToPage("view/Courses.fxml");

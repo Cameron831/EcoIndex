@@ -20,14 +20,12 @@ public class AddCardPromptController implements Navigation, CloneCardInfo {
 	@FXML public void confirmButtonPressed() {
 		Course currentCourse = commonOb.getOpenedCourse();
 		Card newCard = new Card(questionField.getText(), answerField.getText(), learnedCheckbox.isSelected());
-//		currentCourse.incrementLearnedTotal();
 		cloneCard(commonOb.getIndexCardDisplayPane(), commonOb.getCardScrollDisplayPane(), currentCourse.addCard(newCard));
 		exitPrompt();
 	}
 
 	@FXML
 	public void exitPrompt() {
-//		removeClone()
 		remove(commonOb.getTopCoursePagePane(), promptPane);
 	}
 

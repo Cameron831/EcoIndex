@@ -47,9 +47,12 @@ public class CardReviewController {
 	private boolean flipped = false;
 	private boolean animationRunning = false;
 
+	// trans is the shown rotation. flipback is to return to original state
 	private RotateTransition trans = new RotateTransition(Duration.millis(400));
 	private RotateTransition flipback = new RotateTransition(Duration.millis(1));
+	private final static Point3D rotateAxis = new Point3D(1, 0, 0);
 
+	// define adjustments to card layout when revealing answer
 	private final static double questionLayoutYBeforeFlip = 115;
 	private final static double questionLayoutYAfterFlip = 60;
 	private final static double questionPrefHeightBeforeFlip = 400;
@@ -61,7 +64,7 @@ public class CardReviewController {
 	private Card currentCard;
 
 	private int learnedTotal = 0;
-	
+
 	private Course course;
 
 	@FXML
@@ -82,24 +85,27 @@ public class CardReviewController {
 	@FXML
 	Label totalDisplay;
 
-	public void initialize() {	
+	public void initialize() {
 		course = CommonObjs.getSingle().getOpenedCourse();
-		
+
+		// todo: may change to directly pull learned total from value stored in course,
+		// but need to handle non-learned
 		for (Card m : pool)
 			if (m.isLearned())
 				learnedTotal++;
-		
+
 		Collections.shuffle(pool);
 		currentCard = pool.get(currentIndex);
 		totalCount.setText(pool.size() + " Total");
+		totalDisplay.setText("/" + pool.size());
 
 		trans.setNode(cardDisplay);
 		trans.setCycleCount(1);
-		trans.setAxis(new Point3D(1, 0, 0));
+		trans.setAxis(rotateAxis);
 
 		flipback.setNode(cardDisplay);
 		flipback.setCycleCount(1);
-		flipback.setAxis(new Point3D(1, 0, 0));
+		flipback.setAxis(rotateAxis);
 		flipback.setByAngle(-180);
 
 		trans.setOnFinished(e -> {
@@ -112,6 +118,7 @@ public class CardReviewController {
 				n.setOpacity(1);
 			animationRunning = false;
 		});
+
 		updateDisplay();
 		updateLearned();
 		updateCardChildren();
@@ -135,11 +142,16 @@ public class CardReviewController {
 	}
 
 	private void updateCardChildren() {
+		// set card information
 		questionDisplay.setText(currentCard.getQuestion());
 		answerDisplay.setText(currentCard.getAnswer());
 		learnedCheckbox.setSelected(currentCard.isLearned());
+		
+		// based on adjustment values in fields
 		questionDisplay.setLayoutY(flipped ? questionLayoutYAfterFlip : questionLayoutYBeforeFlip);
 		questionDisplay.setPrefHeight(flipped ? questionPrefHeightAfterFlip : questionPrefHeightBeforeFlip);
+		
+		// show answer if user revealed/flipped; hide answer if not flipped yet
 		separator.setVisible(flipped);
 		answerLabel.setVisible(flipped);
 		answerDisplay.setVisible(flipped);
@@ -147,19 +159,17 @@ public class CardReviewController {
 
 	private void updateDisplay() {
 		currentCountDisplay.setText(Integer.toString(currentIndex + 1));
-		totalDisplay.setText("/" + pool.size());
 	}
 
 	@FXML
 	public void nextCard() {
-		if (currentIndex + 1 >= pool.size()) {
-			System.out.println("reached the end");
+		if (currentIndex + 1 >= pool.size()) // reached the end index card
 			return;
-		}
 		currentCard = pool.get(++currentIndex);
 		swapCard();
 	}
 
+	// reset and update for the next card
 	private void swapCard() {
 		updateDisplay();
 		flipped = false;
@@ -168,10 +178,8 @@ public class CardReviewController {
 
 	@FXML
 	public void previousCard() {
-		if (currentIndex <= 0) {
-			System.out.println("already at the beginning");
+		if (currentIndex <= 0) // already at the beginning index card
 			return;
-		}
 		currentCard = pool.get(--currentIndex);
 		swapCard();
 	}
@@ -181,8 +189,10 @@ public class CardReviewController {
 		learnedProgress.setProgress((double) learnedTotal / pool.size());
 	}
 
+	// update learned count stored in course and database	
+	// todo: maybe postpone to a window event listener
 	@FXML
-	public void learnedToggled() {
+	public void learnedToggled() {		
 		learnedTotal += currentCard.isLearned() ? -1 : 1;
 		currentCard.setLearned(learnedCheckbox.isSelected());
 		currentCard.updateCard();

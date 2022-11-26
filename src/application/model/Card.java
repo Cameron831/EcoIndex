@@ -51,12 +51,6 @@ public class Card {
 		this.learned = learned;
 		return change;
 	}
-	
-//	public static void main(String[] args) {
-//		Card c = new Card("a","b", false);
-//		System.out.println(c.setLearned(false));
-//		System.out.println(c.isLearned());
-//	}
 
 	public Card addCard(Course course) {
 		CardSQL db = CardSQL.getSingle();
