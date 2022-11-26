@@ -37,7 +37,7 @@
       </VBox>
    </left>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: silver;" stylesheets="@../css/test.css" BorderPane.alignment="CENTER">
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: silver;" stylesheets="@../css/card.css" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane fx:id="cardDisplay" layoutX="119.0" layoutY="105.0" prefHeight="610.0" prefWidth="815.0" style="-fx-background-color: white;">
                <children>
